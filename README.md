@@ -16,7 +16,7 @@ As the distribution of secure supply chain content becomes a primary focus, user
 
 ## Q&A
 
-- **Q**: How does ORAS Artifacts relate to ORAS Artifacts?
+- **Q**: How does OCI Artifacts relate to ORAS Artifacts?
 - **A**: ORAS Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.
 
 [oci-artifacts]:              https://github.com/opencontainers/artifacts
