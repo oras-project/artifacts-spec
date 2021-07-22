@@ -2,6 +2,11 @@
 
 [OCI Artifacts][oci-artifacts] generalized the ability to persist artifacts within an [OCI Distribution conformant][oci-conformance] registry. The majority of cloud registries, products and projects support pushing and pulling OCI Artifacts to a registry enabling users to benefit from the performance, security, reliability capabilities. Thus avoiding the need to run, manage or care for **Y**et **A**nother **S**torage **S**ervice (YASS).
 
+## How does ORAS Artifacts relate to OCI Artifacts?
+
+OCI Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.  
+For more info, see: [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
+
 ## Table of Contents:
 
 - [Overview](#overview)
@@ -11,6 +16,7 @@
 - [ORAS Artifacts Referrers Spec][artifact-referrers-spec]
 - [CNCF Distribution Support for ORAS Artifacts][cncf-distribution-reftypes]
 - [ORAS experimental support for oras.artifact.manifest references][oras-artifacts] to `push`, `discover`, `pull` referenced artifact types.
+- [Code of Conduct](#code-of-conduct)
 
 ## Overview
 
@@ -35,13 +41,9 @@ The artifact manifest approach to reference types is based on a new manifest, en
 
 ## Project status
 
-The ORAS artifacts-spec is experimental with the goal of providing a working implementation of the [OCI reference types proposal][oci-reference-types-proposal]. The intent is that once sufficiently proven it will be presented to OCI TOB for recommendation to be part of the specifications under their governance. This decision was made with the OCI TOB during the [weekly discussion][oci-tob-weekly-discussion] on July 21, 2021 while they work on creating a process to incubate new work under the [OCI working group][oci-working-group-proposal].
+The ORAS artifacts-spec is experimental with the goal of providing a working implementation of the [OCI reference types proposal][oci-reference-types-proposal]. The intent is that once sufficiently proven it will be presented to OCI TOB for recommendation to be part of the specifications under their governance.
 
-## Q&A
-
-- **Q**: How does OCI Artifacts relate to ORAS Artifacts?
-- **A**: ORAS Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.  
-For more info, see: [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
+This decision was made with the OCI TOB during the [weekly discussion][oci-tob-weekly-discussion] on July 21, 2021 while they work on creating a process to incubate new work under the [OCI working group][oci-working-group-proposal].
 
 ## Code of Conduct
 
