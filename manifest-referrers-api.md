@@ -58,7 +58,6 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "manifest": {
-      "schemaVersion": 3,
         "mediaType": "application/vnd.oras.artifact.manifest.v1-rc1+json",
         "artifactType": "cncf.notary.v2-rc1",
         "blobs": [
@@ -81,7 +80,6 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "manifest": {
-      "schemaVersion": 3,
         "mediaType": "application/vnd.oras.artifact.manifest.v1-rc1+json",
         "artifactType": "example.sbom.v0"
       },

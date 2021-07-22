@@ -1,5 +1,4 @@
 {
-  "schemaVersion": 3,
   "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
   "artifactType": "oci.image.vN",
   "blobs": [

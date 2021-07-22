@@ -1,7 +1,6 @@
 {
-  "schemaVersion": 3,
   "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
-  "artifactType": "cncf.nydus.v1-rc1",
+  "artifactType": "cncf.nydus.v1",
   "blobs": [
     {
       "mediaType": "application/vnd.cncf.nydus.bootstrap.v1.tar+gzip",

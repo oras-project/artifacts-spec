@@ -37,11 +37,6 @@ The following are Phase 1 examples:
 
 For **Phase 1**, an artifact manifest provides an optional collection of blobs and a reference to the manifest of another artifact.
 
-- **`schemaVersion`** *int*
-
-  This REQUIRED property specifies the artifact manifest schema version.
-  For this version of the specification, this MUST be `3`. The value of this field WILL change as the manifest schema evolves. Minor version changes to the `oras.artifact.manifest` spec MUST be additive, while major version changes MAY be breaking. Artifact clients MUST implement version checking to allow for future, yet unknown changes. Artifact clients MUST ignore additive properties to minor versions. Artifact clients MAY support major changes, with no guarantee major changes MAY impose breaking changing behaviors. Artifact authors MAY support new and older schemaVersions to provide the best user experience.
-
 - **`mediaType`** *string*
 
   This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [oci-image-index]. The mediaType for this manifest type MUST be `application/vnd.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions. Artifact authors SHOULD support multiple `mediaType` versions to provide the best user experience for their artifact type.

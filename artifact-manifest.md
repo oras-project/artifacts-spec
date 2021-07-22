@@ -108,7 +108,6 @@ A signature, or an SBoM, would be persisted with the content persisted in the `[
 - **tag**: _-none-_
   ```json
   {
-    "schemaVersion": 3,
     "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
     "artifactType": "cncf.notary.v2-rc1",
     "blobs": [
@@ -138,7 +137,6 @@ The same `net-monitor:v1` image may have an associated SBoM. The SBoM content wo
 - **tag**: _-none-_
   ```json
   {
-    "schemaVersion": 3,
     "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
     "artifactType": "example.sbom.v0",
     "blobs": [
@@ -168,7 +166,6 @@ The  `net-monitor:v1` SBoM will also be signed, providing yet another leaf node.
 - **tag**: _-none-_
   ```json
   {
-    "schemaVersion": 3,
     "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
     "artifactType": "cncf.notary.v2-rc1",
     "blobs": [
