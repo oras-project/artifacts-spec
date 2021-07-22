@@ -39,8 +39,8 @@ For **Phase 1**, an artifact manifest provides an optional collection of blobs a
 
 - **`mediaType`** *string*
 
-  This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [oci-image-index]. The mediaType for this manifest type MUST be `application/vnd.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions. Artifact authors SHOULD support multiple `mediaType` versions to provide the best user experience for their artifact type.
-
+  This property is reserved for use, to maintain compatibility. When used, this field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [oci-image-index]. The mediaType for this manifest type MUST be `application/vnd.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions. Artifact authors SHOULD support multiple `mediaType` versions to provide the best user experience for their artifact type.
+   
 - **`artifactType`** *string*
 
   Phase 1 of the ORAS Artifact spec will support reference types to existing [ORAS Artifacts][oci-artifacts]. The REQUIRED `artifactType` is unique value, as registered with iana.org. See [registering unique types.][registering-iana]. The `artifactType` is equivalent to ORAS Artifacts that used the `manifest.config.mediaType` to differentiate the type of artifact. Artifact authors that implement `oras.artifact.manifest` use `artifactType` to differentiate the type of artifact. example:(`example.sbom` from `cncf.notary`).
