@@ -43,6 +43,10 @@ The ORAS artifacts-spec is experimental with the goal of providing a working imp
 - **A**: ORAS Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.  
 For more info, see: [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
 
+## Code of Conduct
+
+This project has adopted the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for further details.
+
 [oci-artifacts]:                    https://github.com/opencontainers/artifacts
 [oci-conformance]:                  https://github.com/opencontainers/oci-conformance/tree/main/distribution-spec
 [oci-distribution]:                 https://github.com/opencontainers/distribution-spec
