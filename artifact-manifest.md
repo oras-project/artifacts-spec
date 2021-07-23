@@ -18,7 +18,7 @@ Reference types require:
   As registries implement the [distribution-spec][oci-distribution-spec], content may be stored indefinitely. To assure registries MAY implement garbage collection, a manifest is used to identify the intent of the content. See [Lifecycle Management][lifecycle-management] for details. The spec doesn't dictate how an lifecycle management must be implemented, rather focuses on a set of consistent expectations for users to have when working across different implementations.
 
 To separate the reference type deliverables for the fall of 2021 from future work, a `application/vnd.oras.artifact.manifest.v1+json` is provided.
-For spec details on Phase 1, see [artifact-spec.md](./artifact-spec.md)
+For spec details on Phase 1, see [artifact-manifest-spec.md](./artifact-manifest-spec.md)
 
 ### Phase 2 - Artifact Versioning Support
 
