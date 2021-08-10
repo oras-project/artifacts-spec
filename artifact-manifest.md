@@ -4,7 +4,7 @@ The ORAS Artifact manifest is similar to the [OCI image manifest][oci-image-mani
 
 To enable a fall 2021 focus on supply chain security,  **Phase 1** will narrowly focus on Reference Type support, giving time for further generalization with less time constraints.
 
-For usage and scenarios, see [artifact-manifest.md](./artifact-manifest.md)
+For usage and scenarios, see [scenarios.md](./scenarios.md)
 
 ## ORAS Artifact and Image Spec Differences
 

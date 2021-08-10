@@ -18,7 +18,7 @@ Reference types require:
   As registries implement the [distribution-spec][oci-distribution-spec], content may be stored indefinitely. To assure registries MAY implement garbage collection, a manifest is used to identify the intent of the content. See [Lifecycle Management][lifecycle-management] for details. The spec doesn't dictate how an lifecycle management must be implemented, rather focuses on a set of consistent expectations for users to have when working across different implementations.
 
 To separate the reference type deliverables for the fall of 2021 from future work, a `application/vnd.oras.artifact.manifest.v1+json` is provided.
-For spec details on Phase 1, see [artifact-manifest-spec.md](./artifact-manifest-spec.md)
+For spec details on Phase 1, see [artifact-manifest.md](./artifact-manifest.md)
 
 ### Phase 2 - Artifact Versioning Support
 
@@ -372,7 +372,7 @@ oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e03
 [lifecycle-management]:               ./artifact-reftype-spec.md#lifecycle-management
 [oci-image-manifest-spec]:            https://github.com/opencontainers/image-spec/blob/master/manifest.md
 [oci-artifacts]:                      https://github.com/opencontainers/artifacts
-[artifact-manifest-spec]:             ./artifact-manifest-spec.md
+[artifact-manifest-spec]:             ./artifact-manifest.md
 [oci-image-index]:                    https://github.com/opencontainers/image-spec/blob/master/image-index.md
 [oci-distribution-spec]:              https://github.com/opencontainers/distribution-spec
 [referrers-api]:                      ./manifest-referrers-api.md
