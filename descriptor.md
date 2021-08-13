@@ -37,12 +37,6 @@ The following fields contain the primary properties that constitute an Artifact 
 - **`artifactType`** *string*
 
   This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
-
-- **`annotations`** *string-string map*
-
-    This OPTIONAL property contains arbitrary metadata for this descriptor.
-    This OPTIONAL property MUST use the [annotation rules](annotations.md#rules).
-
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
