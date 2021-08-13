@@ -45,6 +45,11 @@ The ORAS artifacts-spec is experimental with the goal of providing a working imp
 
 This decision was made with the OCI TOB during the [weekly discussion][oci-tob-weekly-discussion] on July 21, 2021 while they work on creating a process to incubate new work under the [OCI working group][oci-working-group-proposal].
 
+## Community
+
+- Slack: [#oras-artifacts-spec](https://cloud-native.slack.com/archives/C02AJS1BUTX)
+  - To participate in this channel, join CNCF slack at https://slack.cncf.io/
+
 ## Code of Conduct
 
 This project has adopted the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md). See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for further details.
