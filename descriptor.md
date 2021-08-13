@@ -8,7 +8,7 @@
 * Descriptors SHOULD be embedded in other formats to securely reference external content.
 * Other formats SHOULD use descriptors to securely reference external content.
 
-This section defines the `application/vnd.oras.artifact.descriptor.v1+json` media type.
+This section defines the `application/vnd.cncf.oras.artifact.descriptor.v1+json` media type.
 
 ## Properties
 
@@ -37,6 +37,7 @@ The following fields contain the primary properties that constitute an Artifact 
 - **`artifactType`** *string*
 
   This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
+
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
@@ -137,10 +138,10 @@ The following example describes a manifest, representing a `cncf.notary.v2` sign
 
 ```json,title=Content%20Descriptor&mediatype=application/vnd.oci.descriptor.v1%2Bjson
 {
-  "mediaType": "application/vnd.oci.artifact.manifest.v1+json",
+  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
   "digest": "sha256:5b0bcabd1ed22e9fb1310cf6c2dec7cdef19f0ad69efa1f392e94a4333501270",
   "size": 7682,
-  "artifactType": "cncf.notary.v2"
+  "artifactType": "org.cncf.notary.v2"
 }
 ```
 
