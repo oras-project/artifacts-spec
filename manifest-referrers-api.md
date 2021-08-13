@@ -84,6 +84,6 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
 }
 ```
 
-[oras.artifact.manifest-spec]:           ./artifact-manifest-spec.md
-[oras.artifact.manifest-spec-manifests]: ./artifact-manifest-spec.md#oci-artifact-manifest-properties
+[oras.artifact.manifest-spec]:           ./artifact-manifest.md
+[oras.artifact.manifest-spec-manifests]: ./artifact-manifest.md#oci-artifact-manifest-properties
 [oci-distribution-spec]:                https://github.com/opencontainers/distribution-spec

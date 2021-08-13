@@ -58,10 +58,10 @@ This project has adopted the [CNCF Code of Conduct](https://github.com/cncf/foun
 [oci-conformance]:                  https://github.com/opencontainers/oci-conformance/tree/main/distribution-spec
 [oci-distribution]:                 https://github.com/opencontainers/distribution-spec
 [cncf-distribution-reftypes]:       https://github.com/notaryproject/distribution/blob/reference-types/docs/reference-types.md
-[artifact-manifest]:                ./artifact-manifest.md
+[artifact-manifest]:                ./scenarios.md
 [artifact-manifest-spec]:           ./artifact-reftype-spec.md
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
-[oras-artifacts]:                   https://github.com/deislabs/oras/blob/prototype-2/docs/artifact-manifest.md
+[oras-artifacts]:                   https://github.com/deislabs/oras/blob/prototype-2/docs/scenarios.md
 [oci-reference-types-proposal]:     https://github.com/opencontainers/artifacts/pull/29
 [oci-tob-weekly-discussion]:        https://hackmd.io/El8Dd2xrTlCaCG59ns5cwg#July-21-2021
 [oci-working-group-proposal]:       https://github.com/opencontainers/tob/pull/99
