@@ -42,16 +42,14 @@ GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421
 ### Artifact Referrers API results
 
 [distribution-spec][oci-distribution-spec] implementations MAY implement `artifactType` filtering. Some artifacts types
-including Notary v2 signatures, may return multiple signatures of the same `artifactType`. To avoid an artifact client
-from having to retrieve each manifest, just to determine if it's the specific artifact needed to continue processing,
-the `/referrers` API will return a collection of manifest descriptors, including the annotations within each manifest.
-By providing manifest descriptors with the annotations, a specific artifact client can find the relevant properties they
-need to determine which artifact to retrieve. For example, Notary v2 MAY use an annotation:
-`"org.cncf.notary.v2.signature.subject": "wabbit-networks.io"`, which the client could use to determine which signature
-to pull from the registry. Using annotations, clients can reduce round trips and the data returned to determine which
-artifacts the specific client may require reducing network traffic and API calls. Future support of the `data` field in
-the list of layers/blobs will allow for a signature or other "small" payload to be retrieved with only a single
-additional call to the registry (a GET for the full manifest).
+including Notary v2 signatures, may return multiple signatures of the same `artifactType`. For cases where multiple
+artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine
+whether or not the full artifact is needed. Maintainers of the standards utilizing references SHOULD define standard
+sets of annotations that will allow clients to determine whether or not each artifact needs to be downloaded in full.
+
+While this will cause additional round trips, manifests are typically small in comparison to the full pull time for
+a manifest and its blobs or layers. In the future, responses could be extended to include a `data` field representing
+the base64 encoded manifest blob.
 
 This paged result MUST return the following elements:
 
@@ -68,19 +66,13 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "mediaType": "application/vnd.oci.artifact.manifest.v1+json",
       "artifactType": "cncf.notary.v2",
-      "size": 312,
-      "annotations": {
-        "org.cncf.notary.v2.signature.subject": "wabbit-networks.io"
-      }
+      "size": 312
     },
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "mediaType": "application/vnd.oci.artifact.manifest.v1+json",
       "artifactType": "example.sbom.v0",
-      "size": 237,
-      "annotations": {
-        "example.sbom.v0.author": "wabbit-networks.io"
-      }
+      "size": 237
     }
   ],
   "@nextLink": "{opaqueUrl}"

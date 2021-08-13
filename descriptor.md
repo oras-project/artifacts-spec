@@ -37,15 +37,6 @@ The following fields contain the primary properties that constitute an Artifact 
 - **`artifactType`** *string*
 
   This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
-
-- **`annotations`** *string-string map*
-
-  This OPTIONAL property contains the annotations from the annotations field in the artifact manifest for this
-  descriptor, if present. It does not include annotations from the blob descriptors. This property MUST use the
-  [annotation rules](https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules) and various use cases
-  for references SHOULD define their own sets of annotations that clients can use to make decisions about which
-  artifacts need to be pulled.
-
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
