@@ -8,9 +8,12 @@ Artifact references are defined in the [oras.artifact.manifest spec][oras.artifa
 
 ## Request All Artifact References
 
-The referrers api is sits alongside the [distribution-spec][oci-distribution-spec] paths avoiding any conflict with existing or new distribution apis. Pathing within the referrers api provides consistent repo/namespace paths, enabling registry operators to implement consistent auth access, using existing tokens for content.
+The referrers api sits alongside the [distribution-spec][oci-distribution-spec] paths avoiding any conflict with
+existing or new distribution apis. Pathing within the referrers api provides consistent repo/namespace paths, enabling
+registry operators to implement consistent auth access, using existing tokens for content.
 
-This spec defines the behavior of the `v1` version. Clients MUST account for version checking as future major versions MAY NOT be compatible. Future Minor versions MUST be additive.
+This spec defines the behavior of the `v1` version. Clients MUST account for version checking as future major versions
+MAY NOT be compatible. Future Minor versions MUST be additive.
 
 The `/referrers` API MUST provide for paging. The default page size SHOULD be set to 10.
 
@@ -53,10 +56,12 @@ the base64 encoded manifest blob.
 
 This paged result MUST return the following elements:
 
-- `referrers`: The list of `reference descriptors` that reference the given object. The descriptors used in this API are defined in greater detail [here](descriptor.md).
+- `referrers`: The list of `reference descriptors` that reference the given object. The descriptors used in this API
+  are defined in greater detail [here](descriptor.md).
 - `@nextLink`: Used for paged results.
 
-As an example, Notary v2 manifests use annotations to determine which Notary v2 signature they should retrieve: `"org.cncf.notary.v2.signature.subject": "wabbit-networks.io"`
+As an example, Notary v2 manifests use annotations to determine which Notary v2 signature they should retrieve:
+`"org.cncf.notary.v2.signature.subject": "wabbit-networks.io"`
 
 **example result of artifacts that reference the `net-monitor` image:**
 ```json
