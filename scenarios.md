@@ -167,7 +167,7 @@ The  `net-monitor:v1` SBoM will also be signed, providing yet another leaf node.
   ```json
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
-    "artifactType": "cncf.notary.v2",
+    "artifactType": "org.cncf.notary.v2",
     "blobs": [
       {
         "mediaType": "application/tar",
@@ -366,7 +366,7 @@ oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e03
 
 ## Further reading
 
-- [oras.artifact.manifest spec][artifact-manifest-spec] for more info on the manifest
+- [artifact-manifest][artifact-manifest-spec] spec for more info on the manifest
 - [Referrers API][referrers-api] for more information on listing references
 
 [lifecycle-management]:               ./artifact-manifest.md#lifecycle-management

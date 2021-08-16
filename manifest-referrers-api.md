@@ -1,10 +1,10 @@
 # Manifest Referrers API
 
-[Artifact-manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts. Reference artifacts include Notary v2 signatures, SBoMs and many other types. Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference. To discover referenced artifacts a manifest referrers API is provided. An artifact client, such as a Notary v2 client would parse the returned manifest descriptors, determining which manifest type they will pull and process.
+[Artifact manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts. Reference artifacts include Notary v2 signatures, SBoMs and many other types. Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference. To discover referenced artifacts a manifest referrers API is provided. An artifact client, such as a Notary v2 client would parse the returned manifest descriptors, determining which manifest type they will pull and process.
 
 The `referrers` API returns all artifacts that have a `subjectManifest` to given manifest digest. Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
 
-Artifact references are defined in the [artifact.manifest spec][oras.artifact.manifest-spec] through the [`subjectManifest`][oras.artifact.manifest-spec-manifests] property.
+Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subjectManifest`][oras.artifact.manifest-spec-manifests] property.
 
 ## Request All Artifact References
 
@@ -41,9 +41,12 @@ GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421
 
 ### Artifact Referrers API results
 
-[distribution-spec][oci-distribution-spec] implementations MAY implement `artifactType` filtering. Some artifacts types including Notary v2 signatures, may return multiple signatures of the same `artifactType`. For cases where multiple artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine whether or not the full artifact is needed. Maintainers of the standards utilizing references SHOULD define standard sets of annotations that will allow clients to determine whether or not each artifact needs to be downloaded in full.
+[distribution-spec][oci-distribution-spec] implementations MAY implement `artifactType` filtering. Some artifacts types including Notary v2 signatures, may return multiple signatures of the same `artifactType`.
+For cases where multiple artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine whether or not the full artifact is needed.
+Maintainers of the standards utilizing references SHOULD define standard sets of annotations that will allow clients to determine whether or not each artifact needs to be downloaded in full.
 
-While this will cause additional round trips, manifests are typically small in comparison to the full pull time for a manifest and its blobs or layers. In the future, responses could be extended to include a `data` field representing the base64 encoded manifest blob.
+While this will cause additional round trips, manifests are typically small in comparison to the full pull time for a manifest and its blobs or layers.
+In the future, responses could be extended to include a `data` field representing the base64 encoded manifest blob.
 
 This paged result MUST return the following elements:
 
