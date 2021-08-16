@@ -19,10 +19,10 @@ Pathing within the referrers api provides consistent repo/namespace paths, enabl
 This spec defines the behavior of the `v1` version. Clients MUST account for version checking as future major versions MAY NOT be compatible.
 Future Minor versions MUST be additive.
 
-The `/referrers` API MUST provide for paging. The default page size SHOULD be set to 10.
+The `/referrers` API MUST provide for paging.
 
 ```rest
-GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=10
+GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=<integer>
 ```
 
 **expanded example:**
@@ -60,7 +60,6 @@ In the future, responses could be extended to include a `data` field representin
 This paged result MUST return the following elements:
 
 - `referrers`: The list of `reference descriptors` that reference the given object. The descriptors used in this API are defined in greater detail [here](descriptor.md).
-- `@nextLink`: Used for paged results.
 
 As an example, Notary v2 manifests use annotations to determine which Notary v2 signature they should retrieve: `"org.cncf.notary.v2.signature.subject": "wabbit-networks.io"`
 
@@ -80,10 +79,49 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
       "artifactType": "example.sbom.v0",
       "size": 237
     }
-  ],
-  "@nextLink": "{opaqueUrl}"
+  ]
 }
 ```
+
+**Pagination**
+
+Paginated results are obtained by adding a `n` parameter to the request URL, indicating that the response should be
+limited to `n` results. The default page size SHOULD be set to 10. Starting a paginated flow begins as:
+
+```rest
+GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=<integer>
+```
+
+The above specifies that a referrers response should be returned limiting the number of results to `n`. There is no
+ordering imposed on the resulting collection. The response to such a request would look as follows:
+
+```json
+200 OK
+Link: <url>; rel="next"
+
+{
+  "references": [
+    {
+      "digest": "<string>",
+      "mediaType": "<string>",
+      "artifactType": "<string>",
+      "size": <integer>
+    },
+    ...
+  ]
+}
+```
+
+The above includes upto `n` entries from the result set. If there are more results, the URL for the next collection is
+encoded in an RFC5988 `Link` header, as a "next" relation. Clients SHOULD treat this as an opaque value and not try to
+construct it themselves. The presence of the `Link` header communicates to the client that the server has more results.
+If the header is not present, the client can assume that all results have been received.
+
+> NOTE: In the request template above, the brackets around the url are required. For example, if the url
+> is `http://example.com/oras/artifacts/v1/hello-world/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=5&nextToken=abc`, the
+> value of the header would be
+> `<http://example.com/oras/artifacts/v1/hello-world/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=5&nextToken=abc>; rel="next"`.
+> Please see RFC5988 for details.
 
 [oras.artifact.manifest-spec]:           ./artifact-manifest.md
 [oras.artifact.manifest-spec-manifests]: ./artifact-manifest.md#oras-artifact-manifest-properties
