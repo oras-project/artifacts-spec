@@ -36,7 +36,7 @@ GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=10&artifactTy
 **expanded example:**
 
 ```rest
-GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=org.oci.notary.v2
+GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=org.cncf.notary.v2
 ```
 
 ### Artifact Referrers API results
@@ -74,5 +74,5 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
 ```
 
 [oras.artifact.manifest-spec]:           ./artifact-manifest.md
-[oras.artifact.manifest-spec-manifests]: ./artifact-manifest.md#oci-artifact-manifest-properties
-[oci-distribution-spec]:                https://github.com/opencontainers/distribution-spec
+[oras.artifact.manifest-spec-manifests]: ./artifact-manifest.md#oras-artifact-manifest-properties
+[oci-distribution-spec]:                 https://github.com/opencontainers/distribution-spec

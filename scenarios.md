@@ -17,7 +17,7 @@ Reference types require:
 - **Lifecycle management**: as content is added to a registry, how is its lifecycle handled? Can a user can find and delete reference types, and how would a registry garbage collect unreferenced content.  
   As registries implement the [distribution-spec][oci-distribution-spec], content may be stored indefinitely. To assure registries MAY implement garbage collection, a manifest is used to identify the intent of the content. See [Lifecycle Management][lifecycle-management] for details. The spec doesn't dictate how an lifecycle management must be implemented, rather focuses on a set of consistent expectations for users to have when working across different implementations.
 
-To separate the reference type deliverables for the fall of 2021 from future work, a `application/vnd.oras.artifact.manifest.v1+json` is provided.
+To separate the reference type deliverables for the fall of 2021 from future work, a `application/vnd.cncf.oras.artifact.manifest.v1+json` is provided.
 For spec details on Phase 1, see [artifact-manifest.md](./artifact-manifest.md)
 
 ### Phase 2 - Artifact Versioning Support
@@ -108,8 +108,8 @@ A signature, or an SBoM, would be persisted with the content persisted in the `[
 - **tag**: _-none-_
   ```json
   {
-    "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
-    "artifactType": "cncf.notary.v2-rc1",
+    "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
+    "artifactType": "org.cncf.notary.v2",
     "blobs": [
       {
         "mediaType": "application/tar",
@@ -137,7 +137,7 @@ The same `net-monitor:v1` image may have an associated SBoM. The SBoM content wo
 - **tag**: _-none-_
   ```json
   {
-    "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
+    "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "example.sbom.v0",
     "blobs": [
       {
@@ -166,8 +166,8 @@ The  `net-monitor:v1` SBoM will also be signed, providing yet another leaf node.
 - **tag**: _-none-_
   ```json
   {
-    "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
-    "artifactType": "cncf.notary.v2-rc1",
+    "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
+    "artifactType": "cncf.notary.v2",
     "blobs": [
       {
         "mediaType": "application/tar",
@@ -176,7 +176,7 @@ The  `net-monitor:v1` SBoM will also be signed, providing yet another leaf node.
       }
     ],
     "subjectManifest": {
-      "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
+      "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
       "digest": "sha256:7a781a3930ea3ba1e54bc25c2bdc53edd0284c62ed651fe7b00369da519a3c1a",
       "size": 16724
     },
@@ -369,7 +369,7 @@ oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e03
 - [oras.artifact.manifest spec][artifact-manifest-spec] for more info on the manifest
 - [Referrers API][referrers-api] for more information on listing references
 
-[lifecycle-management]:               ./artifact-reftype-spec.md#lifecycle-management
+[lifecycle-management]:               ./artifact-manifest.md#lifecycle-management
 [oci-image-manifest-spec]:            https://github.com/opencontainers/image-spec/blob/master/manifest.md
 [oci-artifacts]:                      https://github.com/opencontainers/artifacts
 [artifact-manifest-spec]:             ./artifact-manifest.md
