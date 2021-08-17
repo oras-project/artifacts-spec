@@ -21,7 +21,8 @@ The following fields contain the primary properties that constitute an Artifact 
   This REQUIRED property contains the media type of the referenced content.
   Values MUST comply with [RFC 6838][rfc6838], including the [naming requirements in its section 4.2][rfc6838-s4.2].
 
-  Each artifact author MAY define their own unique `mediaTypes`, or utilize existing `mediaTypes` defined by other artifacts. To assure unique ownership, all `mediaTypes` MUST be registered with iana.org.
+  Each artifact author MAY define their own unique `mediaTypes`, or utilize existing `mediaTypes` defined by other artifacts.
+  To assure unique ownership, all `mediaTypes` MUST be registered with iana.org.
 
 - **`digest`** *string*
 
@@ -36,7 +37,8 @@ The following fields contain the primary properties that constitute an Artifact 
 
 - **`artifactType`** *string*
 
-  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
+  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`.
+  When the descriptor is used for blobs, this property MUST be empty.
 
 ## Digests
 

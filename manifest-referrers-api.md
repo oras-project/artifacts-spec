@@ -1,16 +1,23 @@
 # Manifest Referrers API
 
-[Artifact manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts. Reference artifacts include Notary v2 signatures, SBoMs and many other types. Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference. To discover referenced artifacts a manifest referrers API is provided. An artifact client, such as a Notary v2 client would parse the returned manifest descriptors, determining which manifest type they will pull and process.
+[Artifact-manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts.
+Reference artifacts include Notary v2 signatures, SBoMs and many other types.
+Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference.
+To discover referenced artifacts a manifest referrers API is provided.
+An artifact client, such as a Notary v2 client would parse the returned manifest descriptors, determining which manifest type they will pull and process.
 
-The `referrers` API returns all artifacts that have a `subjectManifest` to given manifest digest. Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
+The `referrers` API returns all artifacts that have a `subjectManifest` to given manifest digest.
+Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
 
 Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subjectManifest`][oras.artifact.manifest-spec-manifests] property.
 
 ## Request All Artifact References
 
-The referrers api is sits alongside the [distribution-spec][oci-distribution-spec] paths avoiding any conflict with existing or new distribution apis. Pathing within the referrers api provides consistent repo/namespace paths, enabling registry operators to implement consistent auth access, using existing tokens for content.
+The referrers api is sits alongside the [distribution-spec][oci-distribution-spec] paths avoiding any conflict with existing or new distribution apis.
+Pathing within the referrers api provides consistent repo/namespace paths, enabling registry operators to implement consistent auth access, using existing tokens for content.
 
-This spec defines the behavior of the `v1` version. Clients MUST account for version checking as future major versions MAY NOT be compatible. Future Minor versions MUST be additive.
+This spec defines the behavior of the `v1` version. Clients MUST account for version checking as future major versions MAY NOT be compatible.
+Future Minor versions MUST be additive.
 
 The `/referrers` API MUST provide for paging. The default page size SHOULD be set to 10.
 
@@ -24,7 +31,9 @@ GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=10
 GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10
 ```
 
-The `/referrers` API MAY provide for filtering of `artifactTypes`. Artifact clients MUST account for [distribution-spec][oci-distribution-spec] implementations that MAY NOT support filtering. Artifact clients MUST revert to client side filtering to determine which `artifactTypes` they will process.
+The `/referrers` API MAY provide for filtering of `artifactTypes`.
+Artifact clients MUST account for [distribution-spec][oci-distribution-spec] implementations that MAY NOT support filtering.
+Artifact clients MUST revert to client side filtering to determine which `artifactTypes` they will process.
 
 ### Request Artifacts of a specific media type
 
