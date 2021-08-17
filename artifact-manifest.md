@@ -49,7 +49,7 @@ For **Phase 1**, an artifact manifest provides an optional collection of blobs a
 
     An OPTIONAL collection of 0 or more blobs. The blobs array is analogous to [oci.image.manifest layers][oci-image-manifest-spec-layers], however unlike [image-manifest][oci-image-manifest-spec], the ordering of blobs is specific to the artifact type. Some artifacts may choose an overlay of files, while other artifact types may store independent collections of files.
 
-    - Each item in the array MUST be a [descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
+    - Each item in the array MUST be an [artifact descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
     - The max number of blobs is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
     - An encountered `descriptor.mediaType` that is unknown to the implementation MUST be ignored.
 
@@ -86,5 +86,5 @@ As signatures and SBoMs are not considered independent artifact types, they SHOU
 [media-type]:                      https://github.com/opencontainers/image-spec/blob/master/media-types.md
 [artifact-type]:                   https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#defining-a-unique-artifact-type
 [registering-iana]:                ./artifact-authors.md#registering-unique-types-with-iana
-[descriptor]:                      https://github.com/opencontainers/image-spec/blob/master/descriptor.md
+[descriptor]:                      ./descriptor.md
 [annotations]:                     https://github.com/opencontainers/image-spec/blob/master/annotations.md
