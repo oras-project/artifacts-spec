@@ -85,8 +85,14 @@ As an example, Notary v2 manifests use annotations to determine which Notary v2 
 
 **Pagination**
 
-Paginated results are obtained by adding a `n` parameter to the request URL, indicating that the response should be
-limited to `n` results. The default page size SHOULD be set to 10. Starting a paginated flow begins as:
+The `/referrers` API returns a paginated list of [reference descriptors](./descriptor.md). Page size can be specified
+by adding a `n` parameter to the request URL, indicating that the response should be limited to `n` results.
+
+* If specified, servers MAY return upto `n` items from the entire result set.
+
+* When `n` is not provided, servers MAY return a default number of items, which may be implementation specific.
+
+A paginated flow begins as:
 
 ```rest
 GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=<integer>
@@ -112,10 +118,15 @@ Link: <url>; rel="next"
 }
 ```
 
-The above includes upto `n` entries from the result set. If there are more results, the URL for the next collection is
-encoded in an RFC5988 `Link` header, as a "next" relation. Clients SHOULD treat this as an opaque value and not try to
-construct it themselves. The presence of the `Link` header communicates to the client that the server has more results.
-If the header is not present, the client can assume that all results have been received.
+The above includes upto `n` items from the result set. If there are more items, the URL for the next collection is
+encoded in a RFC5988 `Link` header, as a "next" relation. Clients SHOULD treat this as an opaque value and not try to
+construct it themselves.
+
+* The presence of the `Link` header communicates to the client that the server has more items. Clients are expected
+  to follow the link to fetch the next page of items, irrespective of the number of items received in the current
+  response.
+
+* If the header is not present, clients can assume that all items have been received.
 
 > NOTE: In the request template above, the brackets around the url are required. For example, if the url
 > is `http://example.com/oras/artifacts/v1/hello-world/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=5&nextToken=abc`, the
