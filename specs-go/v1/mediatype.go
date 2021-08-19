@@ -16,5 +16,5 @@ package v1
 
 const (
 	// MediaTypeArtifactManifest specifies the media type for an ORAS artifact reference type manifest.
-	MediaTypeArtifactManifest = "application/vnd.oras.artifact.manifest.v1+json"
+	MediaTypeArtifactManifest = "application/vnd.cncf.oras.artifact.manifest.v1+json"
 )
