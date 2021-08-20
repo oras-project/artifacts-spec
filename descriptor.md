@@ -41,7 +41,8 @@ The following fields contain the primary properties that constitute an Artifact 
 
 - **`artifactType`** *string*
 
-  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
+  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`.
+  When the descriptor is used for blobs, this property MUST be empty.
 
 Descriptors pointing to `application/vnd.oci.image.manifest.v1+json` SHOULD include the extended field `platform`, see [Image Index Property Descriptions][image-descriptor] for details.
 
