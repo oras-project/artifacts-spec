@@ -40,6 +40,26 @@ The following fields contain the primary properties that constitute an Artifact 
   This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`.
   When the descriptor is used for blobs, this property MUST be empty.
 
+- **`urls`** *array of strings*
+
+  This OPTIONAL property specifies a list of URIs from which this object MAY be downloaded.
+  Each entry MUST conform to [RFC 3986][rfc3986].
+  Entries SHOULD use the `http` and `https` schemes, as defined in [RFC 7230][rfc7230-s2.7].
+
+- **`annotations`** *string-string map*
+
+    This OPTIONAL property contains arbitrary metadata for this descriptor.
+    This OPTIONAL property MUST use the annotation rules as defined in the
+    [v1.0.1](https://github.com/opencontainers/image-spec/blob/v1.0.1/annotations.md#rules) release of the OCI Image Spec.
+
+### Reserved
+
+The following field keys are reserved and MUST NOT be used by other specifications.
+
+- **`data`** *string*
+
+  This key is RESERVED for future versions of the specification.
+
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
