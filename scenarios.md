@@ -40,10 +40,10 @@ There are a new set of scenarios requiring the ability to reference existing art
 
 ### Example ORAS Artifact Manifests
 
-- [`net-monitor:v1` oci container image](./artifact-manifest/net-monitor-oci-image.json)
-- [`net-monitor:v1` notary v2 signature](./artifact-manifest/net-monitor-image-signature.json)
-- [`net-monitor:v1` sample sbom](./artifact-manifest/net-monitor-image-sbom.json)
-- [`net-monitor:v1` nydus image with on-demand loading](./artifact-manifest/net-monitor-image-nydus-ondemand-loading.json)
+- [`net-monitor:v1` oci container image](./examples/net-monitor-oci-image.json)
+- [`net-monitor:v1` notary v2 signature](./examples/net-monitor-image-signature.json)
+- [`net-monitor:v1` sample sbom](./examples/net-monitor-image-sbom.json)
+- [`net-monitor:v1` nydus image with on-demand loading](./examples/net-monitor-image-nydus-ondemand-loading.json)
 
 ## Reference Type Requirements
 
