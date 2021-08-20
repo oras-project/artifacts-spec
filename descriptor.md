@@ -34,9 +34,17 @@ The following fields contain the primary properties that constitute an Artifact 
   This property exists so that a client will have an expected size for the content before processing.
   If the length of the retrieved content does not match the specified length, the content SHOULD NOT be trusted.
 
+- **`annotations`** *string-string map*
+
+    This OPTIONAL property contains arbitrary metadata for this descriptor.
+    This OPTIONAL property MUST use the [annotation rules][annotation-rules].
+
 - **`artifactType`** *string*
 
   This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
+
+Descriptors pointing to `application/vnd.oci.image.manifest.v1+json` SHOULD include the extended field `platform`, see [Image Index Property Descriptions][image-descriptor] for details.
+
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
@@ -151,3 +159,6 @@ The following example describes a manifest, representing a `cncf.notary.v2` sign
 [rfc6838-s4.2]: https://tools.ietf.org/html/rfc6838#section-4.2
 [rfc7230-s2.7]: https://tools.ietf.org/html/rfc7230#section-2.7
 [sha256-vs-sha512]: https://groups.google.com/a/opencontainers.org/forum/#!topic/dev/hsMw7cAwrZE
+[image-descriptor]: https://github.com/opencontainers/image-spec/blob/main/image-index.md#image-index-property-descriptions
+[image-manifest]:   https://github.com/opencontainers/image-spec/blob/main/manifest.md
+[annotation-rules]: https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules
