@@ -34,6 +34,12 @@ The following fields contain the primary properties that constitute an Artifact 
   This property exists so that a client will have an expected size for the content before processing.
   If the length of the retrieved content does not match the specified length, the content SHOULD NOT be trusted.
 
+- **`urls`** *array of strings*
+
+  This OPTIONAL property specifies a list of URIs from which this object MAY be downloaded.
+  Each entry MUST conform to [RFC 3986][rfc3986].
+  Entries SHOULD use the `http` and `https` schemes, as defined in [RFC 7230][rfc7230-s2.7].
+
 - **`annotations`** *string-string map*
 
     This OPTIONAL property contains arbitrary metadata for this descriptor.
