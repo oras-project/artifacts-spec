@@ -14,22 +14,27 @@
 
 package v1
 
-// Manifest describes an ORAS artifact.
-// This structure provides `application/vnd.oras.artifact.manifest.v1+json` mediatype when marshalled to JSON.
-type Manifest struct {
+import digest "github.com/opencontainers/go-digest"
+
+// Descriptor describes the disposition of targeted content.
+type Descriptor struct {
 	// MediaType is the media type of the object this schema refers to.
-	MediaType string `json:"mediaType"`
+	MediaType string `json:"mediaType,omitempty"`
 
 	// ArtifactType is the artifact type of the object this schema refers to.
+	//
+	// When the descriptor is used for blobs, this property must be empty.
 	ArtifactType string `json:"artifactType"`
 
-	// Blobs is a collection of blobs referenced by this manifest.
-	Blobs []Descriptor `json:"blobs"`
+	// Digest is the digest of the targeted content.
+	Digest digest.Digest `json:"digest"`
 
-	// SubjectManifest is an optional reference to any existing manifest within the repository.
-	// When specified, the artifact is said to be dependent upon the referenced subjectManifest.
-	SubjectManifest Descriptor `json:"subjectManifest"`
+	// Size specifies the size in bytes of the blob.
+	Size int64 `json:"size"`
 
-	// Annotations contains arbitrary metadata for the artifact manifest.
+	// URLs specifies a list of URLs from which this object MAY be downloaded
+	URLs []string `json:"urls,omitempty"`
+
+	// Annotations contains arbitrary metadata relating to the targeted content.
 	Annotations map[string]string `json:"annotations,omitempty"`
 }
