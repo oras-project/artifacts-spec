@@ -27,8 +27,8 @@ type Manifest struct {
 	Blobs []Descriptor `json:"blobs"`
 
 	// SubjectManifest is an optional reference to any existing manifest within the repository.
-	// When specified, the artifact is said to be dependent upon the referenced subjectManifest.
-	SubjectManifest Descriptor `json:"subjectManifest"`
+	// When specified, the artifact is said to be dependent upon the referenced subject.
+	SubjectManifest Descriptor `json:"subject"`
 
 	// Annotations contains arbitrary metadata for the artifact manifest.
 	Annotations map[string]string `json:"annotations,omitempty"`

@@ -6,10 +6,10 @@ Artifacts that reference other artifacts SHOULD NOT be tagged, as they are consi
 To discover referenced artifacts a manifest referrers API is provided.
 An artifact client, such as a Notary v2 client would parse the returned manifest descriptors, determining which manifest type they will pull and process.
 
-The `referrers` API returns all artifacts that have a `subjectManifest` to given manifest digest.
+The `referrers` API returns all artifacts that have a `subject` to given manifest digest.
 Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
 
-Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subjectManifest`][oras.artifact.manifest-spec-manifests] property.
+Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subject`][oras.artifact.manifest-spec-manifests] property.
 
 ## Request All Artifact References
 

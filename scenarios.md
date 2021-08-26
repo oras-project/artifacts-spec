@@ -1,7 +1,7 @@
 # ORAS Artifact Manifest
 
 The ORAS Artifact manifest generalizes the use cases of [OCI image manifest][oci-image-manifest-spec] by removing constraints defined on the image-manifest such as a required `config` object and required ordinal `layers` collection.
-The `subjectManifest` property provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest` or `image.index`.
+The `subject` property provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest` or `image.index`.
 The addition of a new manifest does not change, nor impact the `image.manifest`.
 By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry doesn't yet implement the new capabilities.
 
@@ -43,7 +43,7 @@ All `oras.artifact.*` based content will be named and versioned, enabling distri
 ## Reference Types
 
 There are a new set of scenarios requiring the ability to reference existing artifacts, including the ability to additively sign content or add a SBoM.
-The addition of a [`subjectManifest`][subjectManifest] property supports linking artifacts through a reference from one artifact manifest to another artifact manifest.
+The addition of a [`subject`][subject] property supports linking artifacts through a reference from one artifact manifest to another artifact manifest.
 By storing these as separate, but linked artifacts, the existing OCI Image tool chain remains unchanged.
 Tooling that opts into understanding these reference types (eg. SBoM, Notary v2 signatures and Nydus image with on-demand loading) can find the referenced artifacts without changing the existing image tool chains.
 
@@ -107,9 +107,9 @@ The `net-monitor:v1` image is persisted as an `oci.image.manifest`, with a uniqu
 
 ### Notary v2 Signatures and SBoM Persistance
 
-Following the [oras.artifact.manifest spec][artifact-manifest-spec], reference type artifacts are pushed with an `manifest.artifactType`, and a `subjectManifest` for the artifact referenced.
+Following the [oras.artifact.manifest spec][artifact-manifest-spec], reference type artifacts are pushed with an `manifest.artifactType`, and a `subject` for the artifact referenced.
 
-A signature, or an SBoM, would be persisted with the content persisted in the `[blobs]` collection, and a `subjectManifest` referencing the `net-monitor:v1` image (by digest).
+A signature, or an SBoM, would be persisted with the content persisted in the `[blobs]` collection, and a `subject` referencing the `net-monitor:v1` image (by digest).
 
 ![Notary v2 signature](./media/notaryv2-signature.svg)
 
@@ -129,7 +129,7 @@ A signature, or an SBoM, would be persisted with the content persisted in the `[
         "size": 32654
       }
     ],
-    "subjectManifest": {
+    "subject": {
       "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "digest": "sha256:73c803930ea3ba1e54bc25c2bdc53edd0284c62ed651fe7b00369da519a3c333",
       "size": 16724
@@ -141,7 +141,7 @@ A signature, or an SBoM, would be persisted with the content persisted in the `[
   ```
 
 The same `net-monitor:v1` image may have an associated SBoM.
-The SBoM content would be persisted as one or more `[blobs]` with a `subjectManifest` referencing the `net-monitor:v1` image (by digest).
+The SBoM content would be persisted as one or more `[blobs]` with a `subject` referencing the `net-monitor:v1` image (by digest).
 
 ![Sample SBOM](./media/net-monitor-sbom.svg)
 
@@ -159,7 +159,7 @@ The SBoM content would be persisted as one or more `[blobs]` with a `subjectMani
         "size": 32654
       }
     ],
-    "subjectManifest": {
+    "subject": {
       "mediaType": "application/vnd.oci.image.manifest.v1+json",
       "digest": "sha256:73c803930ea3ba1e54bc25c2bdc53edd0284c62ed651fe7b00369da519a3c333",
       "size": 16724
@@ -188,7 +188,7 @@ The  `net-monitor:v1` SBoM will also be signed, providing yet another leaf node.
         "size": 32654
       }
     ],
-    "subjectManifest": {
+    "subject": {
       "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
       "digest": "sha256:7a781a3930ea3ba1e54bc25c2bdc53edd0284c62ed651fe7b00369da519a3c1a",
       "size": 16724
@@ -201,14 +201,14 @@ Once all artifacts are submitted, the registry would represent a graph of the `n
 
 ![net-monitor image with an sbom & signatures](media/net-monitor-graph.svg)
 
-The Notary v2 signature and SBoM reference the `net-monitor:v1` image (as a digest) through the `subjectManifest` property.
+The Notary v2 signature and SBoM reference the `net-monitor:v1` image (as a digest) through the `subject` property.
 The `net-monitor:v1` image is represented as an oci-image, and requires no changes to its manifest to support the enhancements.
-The directionality of the `subjectManifest` reference enables links to existing content, without changing the existing content.
+The directionality of the `subject` reference enables links to existing content, without changing the existing content.
 
 ### Deletion and Ref Counting
 
-The `subjectManifest` reference is a hard reference.
-Just as the layers of an OCI Image are deleted (*ref-counted -1*), any artifacts with a `subjectManifest` referring to the target manifest SHOULD be deleted (*ref-counted -1*).
+The `subject` reference is a hard reference.
+Just as the layers of an OCI Image are deleted (*ref-counted -1*), any artifacts with a `subject` referring to the target manifest SHOULD be deleted (*ref-counted -1*).
 See [Lifecycle Management Spec][lifecycle-management] for details.
 
 ## Artifact Manifest Scenarios
@@ -355,7 +355,7 @@ oci-reg copy \
   --copy-references disabled
 ```
 
-As the referenced types are defined by the `manifest.subjectManifest`, copying specific content may be enabled:
+As the referenced types are defined by the `manifest.subject`, copying specific content may be enabled:
 
 **Example**: Filter the types of enhancements:
 
@@ -409,4 +409,4 @@ oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e03
 [oci-image-index]:                    https://github.com/opencontainers/image-spec/blob/master/image-index.md
 [oci-distribution-spec]:              https://github.com/opencontainers/distribution-spec
 [referrers-api]:                      ./manifest-referrers-api.md
-[subjectManifest]:                    ./artifact-reftype-spec.md#oci-artifact-manifest-properties
+[subject]:                    ./artifact-reftype-spec.md#oci-artifact-manifest-properties
