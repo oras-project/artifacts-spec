@@ -1,6 +1,6 @@
 {
   "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
-  "artifactType": "example.annotations.v0",
+  "artifactType": "org.cncf.oras.manifest.annotations",
   "blobs": [],
   "subjectManifest": {
     "mediaType": "application/vnd.oci.image.manifest.v1+json",
@@ -8,7 +8,7 @@
     "size": 16724
   },
   "annotations": {
-    "io.acme-rockets.importDate": "2021-08-25T09:22:00Z",
-    "io.acme-rockets.expiration": "2021-11-21"
+    "io.acme-rockets.foo": "values",
+    "io.acme-rockets.bar": "more-values"
   }
 }
