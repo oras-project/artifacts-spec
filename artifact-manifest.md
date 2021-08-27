@@ -71,11 +71,7 @@ Following the [distribution-spec push api](https://github.com/opencontainers/dis
 
 ## Lifecycle Management
 
-For Phase 1, artifact types will be limited to reference types. A reference type is an artifact that doesn't have a lifecycle unto itself. A container image is said to have an independent lifecycle. A reference type, such as an SBoM or signature have a lifecycle tied to the `subject`. When the `subject` is deleted or marked for garbage collection, the defined artifact is subject to deletion as well. A distribution instance SHOULD delete, (refCount -1) the artifact when the `subject` is deleted.
-
-### Tagged `referenceTypes`
-
-As signatures and SBoMs are not considered independent artifact types, they SHOULD NOT have a tag, simplifying the lifecycle management. As the `subject` is marked for deletion (refCount=0), the `referenctType` is also marked for deletion (refCount -1). However, these artifacts MAY have tags as future versions of the artifact manifest MAY support independent types. 
+Registries MAY treat the lifecycle of a reference type object, such as an SBoM or signature, as being tied to its `subject`. In such registries, when the `subject` is deleted or marked for garbage collection, the defined artifact is subject to deletion as well, unless the artifact is tagged.
 
 [oci-artifacts]:                   https://github.com/opencontainers/artifacts
 [oci-config]:                      https://github.com/opencontainers/image-spec/blob/master/config.md
