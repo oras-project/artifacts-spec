@@ -24,7 +24,7 @@ type Descriptor struct {
 	// ArtifactType is the artifact type of the object this schema refers to.
 	//
 	// When the descriptor is used for blobs, this property must be empty.
-	ArtifactType string `json:"artifactType"`
+	ArtifactType string `json:"artifactType,omitempty"`
 
 	// Digest is the digest of the targeted content.
 	Digest digest.Digest `json:"digest"`
