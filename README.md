@@ -55,7 +55,10 @@ For more info, see: [Discussion of a new manifest #41](https://github.com/openco
 
 ## Project status
 
-The ORAS artifacts-spec is nearing a release candidate (RC), with a [CNCF Distribution reference implementation][cncf-distribution-artifacts].
+The ORAS artifacts-spec is nearing a release candidate (RC), with the following reference implementations:
+- [CNCF Distribution][cncf-distribution-artifacts] (registry) reference implementation
+- [ORAS CLI][oras-cli] for pushing, discovering, pulling OCI & ORAS Artifacts
+- [Notary v2 - notation CLI][notation], enabling signing of all OCI Artifacts
 
 ## ORAS and OCI
 
@@ -81,4 +84,5 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [cncf-distribution-artifacts]:      https://github.com/oras-project/distribution/
 [artifact-manifest-spec]:           ./artifact-manifest.md
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
-[oras-artifacts]:                   https://github.com/oras-project/oras
+[oras-cli]:                         https://github.com/oras-project/oras/tree/reference-types
+[notation]:                         https://github.com/notaryproject/notation
