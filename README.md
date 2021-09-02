@@ -16,6 +16,9 @@ The ORAS Artifacts specification includes:
   - [Overview](#overview)
   - [Comparing the ORAS Artifact Manifest and OCI Image Manifest](#comparing-the-oras-artifact-manifest-and-oci-image-manifest)
   - [How does ORAS Artifacts relate to OCI Artifacts?](#how-does-oras-artifacts-relate-to-oci-artifacts)
+  - [Scenarios](./scenarios.md)
+  - [Artifact Manifest Spec](./artifact-manifest.md)
+  - [referrers API](./manifest-referrers-api.md)
   - [Project status](#project-status)
   - [Community](#community)
   - [Code of Conduct](#code-of-conduct)
@@ -49,7 +52,6 @@ The high-level differences with the `oras.artifact.manifest` and the `oci.image.
 | | `subject` OPTIONAL, enabling an artifact to extend another artifact (SBOM, Signatures, Nydus, Scan Results)
 | | `/referrers` api for discovering referenced artifacts, with the ability to filter by `artifactType` |
 | | Lifecycle management defined, starting to provide standard expectations for how users can manage their content |
-
 
 For more info, see: [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
 

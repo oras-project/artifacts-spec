@@ -398,7 +398,7 @@ oci-reg delete-references \
 oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e0303114d8d93aaaa081732b86451d9bce1f432a537bc7
 ```
 
-## Further reading
+## Further Reading
 
 - [artifact-manifest][artifact-manifest-spec] spec for more info on the manifest
 - [Referrers API][referrers-api] for more information on listing references
