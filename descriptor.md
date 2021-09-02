@@ -8,7 +8,7 @@
 * Descriptors SHOULD be embedded in other formats to securely reference external content.
 * Other formats SHOULD use descriptors to securely reference external content.
 
-This section defines the `application/vnd.oras.artifact.descriptor.v1+json` media type.
+This section defines the `application/vnd.cncf.oras.artifact.descriptor.v1+json` media type.
 
 ## Properties
 
@@ -21,7 +21,8 @@ The following fields contain the primary properties that constitute an Artifact 
   This REQUIRED property contains the media type of the referenced content.
   Values MUST comply with [RFC 6838][rfc6838], including the [naming requirements in its section 4.2][rfc6838-s4.2].
 
-  Each artifact author MAY define their own unique `mediaTypes`, or utilize existing `mediaTypes` defined by other artifacts. To assure unique ownership, all `mediaTypes` MUST be registered with iana.org.
+  Each artifact author MAY define their own unique `mediaTypes`, or utilize existing `mediaTypes` defined by other artifacts.
+  To assure unique ownership, all `mediaTypes` MUST be registered with iana.org.
 
 - **`digest`** *string*
 
@@ -34,9 +35,24 @@ The following fields contain the primary properties that constitute an Artifact 
   This property exists so that a client will have an expected size for the content before processing.
   If the length of the retrieved content does not match the specified length, the content SHOULD NOT be trusted.
 
+- **`urls`** *array of strings*
+
+  This OPTIONAL property specifies a list of URIs from which this object MAY be downloaded.
+  Each entry MUST conform to [RFC 3986][rfc3986].
+  Entries SHOULD use the `http` and `https` schemes, as defined in [RFC 7230][rfc7230-s2.7].
+
+- **`annotations`** *string-string map*
+
+    This OPTIONAL property contains arbitrary metadata for this descriptor.
+    This OPTIONAL property MUST use the [annotation rules][annotation-rules].
+
 - **`artifactType`** *string*
 
-  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`. When the descriptor is used for blobs, this property MUST be empty.
+  This OPTIONAL property defines the type or Artifact, differentiating artifacts that use the `application/vnd.oras.manifest`.
+  When the descriptor is used for blobs, this property MUST be empty.
+
+Descriptors pointing to `application/vnd.oci.image.manifest.v1+json` SHOULD include the extended field `platform`, see [Image Index Property Descriptions][image-descriptor] for details.
+
 ## Digests
 
 The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability](http://en.wikipedia.org/wiki/Content-addressable_storage).
@@ -137,10 +153,10 @@ The following example describes a manifest, representing a `cncf.notary.v2` sign
 
 ```json,title=Content%20Descriptor&mediatype=application/vnd.oci.descriptor.v1%2Bjson
 {
-  "mediaType": "application/vnd.oci.artifact.manifest.v1+json",
+  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
   "digest": "sha256:5b0bcabd1ed22e9fb1310cf6c2dec7cdef19f0ad69efa1f392e94a4333501270",
   "size": 7682,
-  "artifactType": "cncf.notary.v2"
+  "artifactType": "org.cncf.notary.v2"
 }
 ```
 
@@ -151,3 +167,6 @@ The following example describes a manifest, representing a `cncf.notary.v2` sign
 [rfc6838-s4.2]: https://tools.ietf.org/html/rfc6838#section-4.2
 [rfc7230-s2.7]: https://tools.ietf.org/html/rfc7230#section-2.7
 [sha256-vs-sha512]: https://groups.google.com/a/opencontainers.org/forum/#!topic/dev/hsMw7cAwrZE
+[image-descriptor]: https://github.com/opencontainers/image-spec/blob/main/image-index.md#image-index-property-descriptions
+[image-manifest]:   https://github.com/opencontainers/image-spec/blob/main/manifest.md
+[annotation-rules]: https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules

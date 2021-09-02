@@ -1,6 +1,6 @@
 {
-  "mediaType": "application/vnd.oras.artifact.manifest.v1+json",
-  "artifactType": "cncf.nydus.v1",
+  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
+  "artifactType": "org.cncf.nydus.v1",
   "blobs": [
     {
       "mediaType": "application/vnd.cncf.nydus.bootstrap.v1.tar+gzip",
@@ -18,7 +18,7 @@
       "size": 226
     }
   ],
-  "subjectManifest": {
+  "subject": {
     "mediaType": "application/vnd.oci.image.manifest.v1+json",
     "digest": "sha256:73c803930ea3ba1e54bc25c2bdc53edd0284c62ed651fe7b00369da519a3c333",
     "size": 16724
