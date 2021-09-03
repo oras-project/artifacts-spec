@@ -400,7 +400,7 @@ oci-reg delete registry.acme-rockets.io/net-monitor@sha256:b5b2b2c507a0944348e03
 
 ## Further Reading
 
-- [artifact-manifest][artifact-manifest-spec] spec for more info on the manifest
+- [artifact-manifest spec][artifact-manifest-spec]
 - [Referrers API][referrers-api] for more information on listing references
 
 [lifecycle-management]:               ./artifact-manifest.md#lifecycle-management
