@@ -14,7 +14,7 @@ Artifact reference types support the following requirements:
 
 - Adding related artifacts, maintaining the original artifact digest and collection of associated tags.
 - `many:1` references, enabling multiple signatures, SBoMs, images with on-demand loading to be linked to a single artifact.
-- Build atop the existing distribution-spec push, persist and pull APIs.
+- Build atop the existing distribution-spec push and pull APIs.
 - Avoiding the need to tag an artifact to assure its not garbage collected as an untagged manifest.
 - Discovery, based on the subject artifact. Consumers need not know the specific digest for a signature. Rather a registry client discovers a list of references based a provided tag or digest.
 - Copying a graph of references within and across ORAS Artifact enabled, distribution spec based registries, enabling an image, its signatures, SBoMs and images with on-demand loading to be copied as a collection.
@@ -186,7 +186,7 @@ The directionality of the `subject` reference enables links to existing content,
 ### Deletion and Ref Counting
 
 The `subject` reference is a hard reference.
-Just as the layers of an OCI Image are deleted (*ref-counted -1*), any artifacts with a `subject` referring to the target manifest MAY be deleted (*ref-counted -1*).
+Just as the layers of an OCI Image are deleted, any artifacts with a `subject` referring to the target manifest MAY be deleted.
 
 See [Lifecycle Management Spec][lifecycle-management] for details.
 
@@ -218,7 +218,7 @@ In the following example, the Notary v2 signature, an SBoM and a collection of a
 
 The references may be expanded or collapsed as the `oras.artifact.manifest` provides reference information, based on the `artifact.manifest.subject` property.
 
-![flat listing of ORAS Artifacts](media/repo-listing-attributed.svg)
+![Collapsed, hierarchical listing of ORAS Artifacts](media/repo-listing-attributed.svg)
 
 The `:v1` tagged artifact may be expanded to see the references:
 
