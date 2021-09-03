@@ -1,7 +1,7 @@
 # ORAS Artifacts Specification
 
 [OCI Artifacts][oci-artifacts] generalized the ability to persist artifacts within an [OCI Distribution conformant][oci-conformance] registry enabling a wide range of *individual* artifacts.
-The majority of cloud registries, products and projects support pushing and pulling OCI Artifacts to a registry, enabling users to benefit from the performance, security, reliability capabilities, avoiding the need to run, manage or care for **Y**et **A**nother **S**torage **S**ervice (YASS). 
+The majority of cloud registries, products and projects support pushing and pulling OCI Artifacts to a registry, enabling users to benefit from the performance, security, reliability capabilities. These common registry capabilities avoid the need to run, manage or care for **Y**et **A**nother **S**torage **S**ervice (YASS). 
 
 A focus on storing secure supply chain artifacts, including Software Bill of Materials (SBoM), security scan results and signatures has prompted a new set of capabilities.
 Building on OCI Artifacts, the ORAS [artifact.manifest][artifact-manifest-spec] generalizes the use cases of [OCI image manifest][oci-image-manifest] by removing constraints defined on the `image.manifest`, while adding support for references between artifacts.
@@ -57,10 +57,10 @@ For more info, see: [Discussion of a new manifest #41](https://github.com/openco
 
 ## Project status
 
-The ORAS artifacts-spec is nearing a release candidate (RC), with the following reference implementations:
+The ORAS artifacts-spec is nearing [draft status][release], with the following reference implementations:
 - [CNCF Distribution][cncf-distribution-artifacts] (registry) reference implementation
 - [ORAS CLI][oras-cli] for pushing, discovering, pulling OCI & ORAS Artifacts
-- [Notary v2 - notation CLI][notation], enabling signing of all OCI Artifacts
+- [Notary - notation CLI][notation], enabling signing of all OCI Artifacts
 
 ## ORAS and OCI
 
@@ -88,3 +88,4 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
 [oras-cli]:                         https://github.com/oras-project/oras/tree/reference-types
 [notation]:                         https://github.com/notaryproject/notation
+[release]:                          https://github.com/oras-project/artifacts-spec/pull/35
