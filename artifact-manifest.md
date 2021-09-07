@@ -1,8 +1,9 @@
-# ORAS Artifact Manifest Spec (Phase-1 Reference Types)
+# ORAS Artifact Manifest Spec
 
-The ORAS Artifact manifest is similar to the [OCI image manifest][oci-image-manifest-spec], but removes constraints defined on the image-manifest such as a required `config` object and required & ordinal `layers`. It then adds a `subject` property supporting reference types. The addition of a new manifest does not change, nor impact the `image.manifest`. It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest` or `image.index`. By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry doesn't yet implement the new capabilities.
-
-To enable a fall 2021 focus on supply chain security,  **Phase 1** will narrowly focus on Reference Type support, giving time for further generalization with less time constraints.
+The ORAS Artifact manifest is similar to the [OCI image manifest][oci-image-manifest-spec], but removes constraints defined on the image-manifest such as a required `config` object and required & ordinal `layers`.
+It then adds a `subject` property supporting a graph of independent, but link artifacts.
+The addition of a new manifest does not change, nor impact the `image.manifest`. It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest` or `image.index`.
+By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry may not yet implement new capabilities.
 
 For usage and scenarios, see [scenarios.md](./scenarios.md)
 
@@ -12,21 +13,15 @@ The high-level differences with the `oras.artifact.manifest` and the `oci.image.
 
 | OCI Image Manifest | ORAS Artifacts Manifest |
 |-|-|
-| `config` REQUIRED | `config` optional as it's just another entry in the `blobs` collection with a `config mediaType` |
-| `layers` REQUIRED | `blobs`, which renamed `layers` to reflect general usage are OPTIONAL |
-| `layers` ORDINAL | `blobs` are defined by the specific artifact spec. Helm isn't ordinal, while other artifact types, like container images MAY make them ordinal |
-| `manifest.config.mediaType` used to uniquely identify different artifact types. | `manifest.artifactType` added to lift the workaround for using `manifest.config.mediaType` on a REQUIRED, but not always used property, decoupling `config.mediaType` from `artifactType`. |
-| | `subject` OPTIONAL, enabling an artifact to extend another artifact (SBOM, Signatures, Nydus, Scan Results, )
+| `config` REQUIRED | `config` OPTIONAL as it's just another entry in the `blobs` collection with a config `mediaType` |
+| `layers` REQUIRED | `blobs` are OPTIONAL, which were renamed from `layers` to reflect general usage |
+| `layers` ORDINAL | `blobs` are defined by the specific artifact spec. For example, Helm utilizes two independent, non-ordinal blobs, while other artifact types like container images may require blobs to be ordinal |
+| `manifest.config.mediaType` used to uniquely identify artifact types. | `manifest.artifactType` added to lift the workaround for using `manifest.config.mediaType` on a REQUIRED, but not always used `config` property. Decoupling `config.mediaType` from `artifactType` enables artifacts to OPTIONALLY share config schemas. |
+| | `subject` OPTIONAL, enabling an artifact to extend another artifact (SBOM, Signatures, Nydus, Scan Results)
 | | `/referrers` api for discovering referenced artifacts, with the ability to filter by `artifactType` |
-| | Lifecycle management defined, starting to provide standard expectations for how users can manage their content. It doesn't define GC as an internal detail|
+| | Lifecycle management defined, starting to provide standard expectations for how users can manage their content |
 
-The artifact manifest approach to reference types is based on a new manifest, enabling registries and clients to opt-into the behavior, with clear and consistent expectations, rather than slipping new content into a registry, or client, that may, or may not know how to lifecycle manage the new content. See [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
-
-
-
-## Example ORAS Artifact Manifests
-
-The following are Phase 1 examples:
+### Example ORAS Artifact Manifests
 
 - [`net-monitor:v1` oci container image](./examples/net-monitor-oci-image.json)
 - [`net-monitor:v1` notary v2 signature](./examples/net-monitor-image-signature.json)
@@ -35,15 +30,15 @@ The following are Phase 1 examples:
 
 ## ORAS Artifact Manifest Properties
 
-For **Phase 1**, an artifact manifest provides an optional collection of blobs and a reference to the manifest of another artifact.
+The `artifact.manifest` provides an optional collection of `blobs`, an optional reference to the manifest of another artifact and an `artifactType` to differentiate different types of artifacts (such as signatures, sboms and security scan results)
 
 - **`mediaType`** *string*
 
-  This property is reserved for use, to maintain compatibility. When used, this field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [oci-image-index]. The mediaType for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions. Artifact authors SHOULD support multiple `mediaType` versions to provide the best user experience for their artifact type.
+  This property is reserved for use, to maintain compatibility. When used, this field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [oci-image-index]. The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions. Artifact authors SHOULD support multiple `mediaType` versions to provide the best user experience for their artifact type.
    
 - **`artifactType`** *string*
 
-  Phase 1 of the ORAS Artifact spec will support reference types to existing [ORAS Artifacts][oci-artifacts]. The REQUIRED `artifactType` is unique value, as registered with iana.org. See [registering unique types.][registering-iana]. The `artifactType` is equivalent to ORAS Artifacts that used the `manifest.config.mediaType` to differentiate the type of artifact. Artifact authors that implement `oras.artifact.manifest` use `artifactType` to differentiate the type of artifact. example:(`example.sbom` from `cncf.notary`).
+  The REQUIRED `artifactType` is unique value, as registered with iana.org. See [registering unique types.][registering-iana]. The `artifactType` is equivalent to ORAS Artifacts that used the `manifest.config.mediaType` to differentiate the type of artifact. Artifact authors that implement `oras.artifact.manifest` use `artifactType` to differentiate the type of artifact. example:(`application/x.example.sbom.v0` from `application/vnd.cncf.notary.v2`).
 
 - **`blobs`** *array of objects*
 
@@ -51,19 +46,17 @@ For **Phase 1**, an artifact manifest provides an optional collection of blobs a
 
     - Each item in the array MUST be an [artifact descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
     - The max number of blobs is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
-    - An encountered `descriptor.mediaType` that is unknown to the implementation MUST be ignored.
+    - An encountered `[blobs].descriptor.mediaType` that is unknown to the implementation MUST be ignored.
 
 - **`subject`** *descriptor*
 
    An OPTIONAL reference to any existing manifest within the repository. When specified, the artifact is said to be dependent upon the referenced `subject`.
-   - The item MUST be a [descriptor][descriptor] representing a manifest. Descriptors to blobs are not supported. The registry MUST return a `400` response code when `subject` is not found in the same repository, and not a manifest.
+   - The item MUST be an [artifact descriptor][descriptor] representing a manifest. Descriptors to blobs are not supported. The registry MUST return a `400` response code when `subject` is not found in the same repository, and not a manifest.
 
 - **`annotations`** *string-string map*
 
-    This OPTIONAL property contains arbitrary metadata for the image manifest.
+    This OPTIONAL property contains arbitrary metadata for the artifact manifest.
     This OPTIONAL property MUST use the [annotation rules](annotations.md#rules).
-
-    See [Pre-Defined Annotation Keys][annotations]
 
 ## Push Validation
 
@@ -73,14 +66,14 @@ Following the [distribution-spec push api](https://github.com/opencontainers/dis
 
 Registries MAY treat the lifecycle of a reference type object, such as an SBoM or signature, as being tied to its `subject`. In such registries, when the `subject` is deleted or marked for garbage collection, the defined artifact is subject to deletion as well, unless the artifact is tagged.
 
-[oci-artifacts]:                   https://github.com/opencontainers/artifacts
-[oci-config]:                      https://github.com/opencontainers/image-spec/blob/master/config.md
+## Further Reading
+
+- [Scenarios](./scenarios.md)
+- [Referrers API](./manifest-referrers-api.md) for more information on listing references
+
 [oci-image-manifest-spec]:         https://github.com/opencontainers/image-spec/blob/master/manifest.md
 [oci-image-manifest-spec-layers]:  https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions
 [oci-image-index]:                 https://github.com/opencontainers/image-spec/blob/master/image-index.md
 [oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
-[media-type]:                      https://github.com/opencontainers/image-spec/blob/master/media-types.md
-[artifact-type]:                   https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#defining-a-unique-artifact-type
 [registering-iana]:                ./artifact-authors.md#registering-unique-types-with-iana
 [descriptor]:                      ./descriptor.md
-[annotations]:                     https://github.com/opencontainers/image-spec/blob/master/annotations.md
