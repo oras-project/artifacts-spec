@@ -2,7 +2,8 @@
 
 The ORAS Artifact manifest is similar to the [OCI image manifest][oci-image-manifest-spec], but removes constraints defined on the image-manifest such as a required `config` object and required & ordinal `layers`.
 It then adds a `subject` property supporting a graph of independent, but link artifacts.
-The addition of a new manifest does not change, nor impact the `image.manifest`. It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest` or `image.index`.
+The addition of a new manifest does not change, nor impact the `image.manifest`.
+It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest`, `image.index` or another `artifact.manifest`.
 By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry may not yet implement new capabilities.
 
 For usage and scenarios, see [scenarios.md](./scenarios.md)
@@ -38,7 +39,11 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
    
 - **`artifactType`** *string*
 
-  The REQUIRED `artifactType` is unique value, as registered with iana.org. See [registering unique types.][registering-iana]. The `artifactType` is equivalent to ORAS Artifacts that used the `manifest.config.mediaType` to differentiate the type of artifact. Artifact authors that implement `oras.artifact.manifest` use `artifactType` to differentiate the type of artifact. example:(`application/x.example.sbom.v0` from `application/vnd.cncf.notary.v2`).
+  The REQUIRED `artifactType` is unique value, as registered with iana.org.
+  See [registering unique types.][registering-iana].
+  The `artifactType` is equivalent to [OCI Artifacts][oci-artifacts] that used the `manifest.config.mediaType` to differentiate the type of artifact.
+  Artifact authors that implement `oras.artifact.manifest` use `artifactType` to differentiate the type of artifact. example:(`application/x.example.sbom.v0` from `application/vnd.cncf.notary.v2`).
+  For details on creating a unique `artifactType`, see [OCI Artifact Authors Guidance][oci-artifact-authors]
 
 - **`blobs`** *array of objects*
 
@@ -71,9 +76,11 @@ Registries MAY treat the lifecycle of a reference type object, such as an SBoM o
 - [Scenarios](./scenarios.md)
 - [Referrers API](./manifest-referrers-api.md) for more information on listing references
 
+[oci-artifacts]:                   https://github.com/opencontainers/artifacts
+[oci-artifact-authors]:            https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md
 [oci-image-manifest-spec]:         https://github.com/opencontainers/image-spec/blob/master/manifest.md
 [oci-image-manifest-spec-layers]:  https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions
 [oci-image-index]:                 https://github.com/opencontainers/image-spec/blob/master/image-index.md
 [oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
-[registering-iana]:                ./artifact-authors.md#registering-unique-types-with-iana
+[registering-iana]:                https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#registering-unique-types-with-iana
 [descriptor]:                      ./descriptor.md
