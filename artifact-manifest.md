@@ -40,7 +40,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 - **`artifactType`** *string*
 
   The REQUIRED `artifactType` is a unique value, as registered with [iana.org][registering-iana].
-  The `artifactType` is equivalent to `manifest.config.mediaType` in [OCI Artifacts][oci-artifacts].
+  The `artifactType` values are equivalent to the values used in the `manifest.config.mediaType` in [OCI Artifacts][oci-artifacts].
   Examples include `application/x.example.sbom.v0`, `application/vnd.cncf.notary.v2`.  
   For details on creating a unique `artifactType`, see [OCI Artifact Authors Guidance][oci-artifact-authors]
 
