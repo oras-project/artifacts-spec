@@ -17,9 +17,6 @@ package v1
 // Manifest describes an ORAS artifact.
 // This structure provides `application/vnd.oras.artifact.manifest.v1+json` mediatype when marshalled to JSON.
 type Manifest struct {
-	// MediaType is the media type of the object this schema refers to.
-	MediaType string `json:"mediaType"`
-
 	// ArtifactType is the artifact type of the object this schema refers to.
 	ArtifactType string `json:"artifactType"`
 

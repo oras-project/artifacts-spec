@@ -62,7 +62,7 @@ This paged result MUST return the following elements:
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
-      "artifactType": "application/x.example.sbom.v0",
+      "artifactType": "sbom/example",
       "size": 237
     }
   ]

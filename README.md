@@ -88,4 +88,4 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
 [oras-cli]:                         https://github.com/oras-project/oras/tree/reference-types
 [notation]:                         https://github.com/notaryproject/notation
-[release]:                          https://github.com/oras-project/artifacts-spec/pull/35
+[release]:                          ./RELEASES.md
