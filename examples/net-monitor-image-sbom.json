@@ -1,6 +1,5 @@
 {
-  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
-  "artifactType": "example.sbom.v0",
+  "artifactType": "sbom/example",
   "blobs": [
     {
       "mediaType": "application/tar",

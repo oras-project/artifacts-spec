@@ -156,7 +156,7 @@ The following example describes a manifest, representing a `cncf.notary.v2` sign
   "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
   "digest": "sha256:5b0bcabd1ed22e9fb1310cf6c2dec7cdef19f0ad69efa1f392e94a4333501270",
   "size": 7682,
-  "artifactType": "org.cncf.notary.v2"
+  "artifactType": "application/vnd.cncf.notary.v2"
 }
 ```
 
