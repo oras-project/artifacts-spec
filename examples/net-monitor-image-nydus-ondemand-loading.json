@@ -1,5 +1,5 @@
 {
-  "artifactType": "org.cncf.nydus.v1",
+  "artifactType": "application/vnd.cncf.nydus.v1",
   "blobs": [
     {
       "mediaType": "application/vnd.cncf.nydus.bootstrap.v1.tar+gzip",

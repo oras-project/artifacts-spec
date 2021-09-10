@@ -1,5 +1,5 @@
 {
-  "artifactType": "org.cncf.notary.v2",
+  "artifactType": "application/vnd.cncf.notary.v2",
   "blobs": [
     {
       "mediaType": "application/tar",

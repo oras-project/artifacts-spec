@@ -1,5 +1,5 @@
 {
-  "artifactType": "oci.image.vN",
+  "artifactType": "application/vnd.oci.image.manifest.v1+json",
   "blobs": [
     {
       "mediaType": "application/vnd.oci.image.config.v1+json",

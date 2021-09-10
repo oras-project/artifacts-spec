@@ -6,28 +6,7 @@ The addition of a new manifest does not change, nor impact the `image.manifest`.
 It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest`, `image.index` or another `artifact.manifest`.
 By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry may not yet implement new capabilities.
 
-For usage and scenarios, see [scenarios.md](./scenarios.md)
-
-## ORAS Artifact and Image Spec Differences
-
-The high-level differences with the `oras.artifact.manifest` and the `oci.image.manifest`:
-
-| OCI Image Manifest | ORAS Artifacts Manifest |
-|-|-|
-| `config` REQUIRED | `config` OPTIONAL as it's just another entry in the `blobs` collection with a config `mediaType` |
-| `layers` REQUIRED | `blobs` are OPTIONAL, which were renamed from `layers` to reflect general usage |
-| `layers` ORDINAL | `blobs` are defined by the specific artifact spec. For example, Helm utilizes two independent, non-ordinal blobs, while other artifact types like container images may require blobs to be ordinal |
-| `manifest.config.mediaType` used to uniquely identify artifact types. | `manifest.artifactType` added to lift the workaround for using `manifest.config.mediaType` on a REQUIRED, but not always used `config` property. Decoupling `config.mediaType` from `artifactType` enables artifacts to OPTIONALLY share config schemas. |
-| | `subject` OPTIONAL, enabling an artifact to extend another artifact (SBOM, Signatures, Nydus, Scan Results)
-| | `/referrers` api for discovering referenced artifacts, with the ability to filter by `artifactType` |
-| | Lifecycle management defined, starting to provide standard expectations for how users can manage their content |
-
-### Example ORAS Artifact Manifests
-
-- [`net-monitor:v1` oci container image](./examples/net-monitor-oci-image.json)
-- [`net-monitor:v1` notary v2 signature](./examples/net-monitor-image-signature.json)
-- [`net-monitor:v1` sample sbom](./examples/net-monitor-image-sbom.json)
-- [`net-monitor:v1` nydus image with on-demand loading](./examples/net-monitor-image-nydus-ondemand-loading.json)
+This section defines the `application/vnd.cncf.oras.artifact.manifest.v1+json` media type.
 
 ## ORAS Artifact Manifest Properties
 
@@ -37,7 +16,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
   The REQUIRED `artifactType` is a unique value, as registered with [iana.org][registering-iana].
   The `artifactType` values are equivalent to the values used in the `manifest.config.mediaType` in [OCI Artifacts][oci-artifacts].
-  Examples include `application/x.example.sbom.v0`, `application/vnd.cncf.notary.v2`.  
+  Examples include `sbom/example`, `application/vnd.cncf.notary.v2`.
   For details on creating a unique `artifactType`, see [OCI Artifact Authors Guidance][oci-artifact-authors]
 
 - **`blobs`** *array of objects*
@@ -58,6 +37,13 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
     This OPTIONAL property contains arbitrary metadata for the artifact manifest.
     This OPTIONAL property MUST use the [annotation rules](annotations.md#rules).
 
+### Example ORAS Artifact Manifests
+
+- [`net-monitor:v1` oci container image](./examples/net-monitor-oci-image.json)
+- [`net-monitor:v1` notary v2 signature](./examples/net-monitor-image-signature.json)
+- [`net-monitor:v1` sample sbom](./examples/net-monitor-image-sbom.json)
+- [`net-monitor:v1` nydus image with on-demand loading](./examples/net-monitor-image-nydus-ondemand-loading.json)
+
 ## Push Validation
 
 Following the [distribution-spec push api](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#push), all `blobs` *and* the `subject` descriptors SHOULD exist when pushed to a distribution instance.
@@ -68,7 +54,8 @@ Registries MAY treat the lifecycle of a reference type object, such as an SBoM o
 
 ## Further Reading
 
-- [Scenarios](./scenarios.md)
+- [Usage and Scenarios](./scenarios.md)
+- [Comparing the ORAS Artifact Manifest and OCI Image Manifest][manifest-differences]
 - [Referrers API](./manifest-referrers-api.md) for more information on listing references
 
 [oci-artifacts]:                   https://github.com/opencontainers/artifacts
@@ -79,3 +66,4 @@ Registries MAY treat the lifecycle of a reference type object, such as an SBoM o
 [oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
 [registering-iana]:                https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#registering-unique-types-with-iana
 [descriptor]:                      ./descriptor.md
+[manifest-differences]: ./README.md#comparing-the-oras-artifact-manifest-and-oci-image-manifest

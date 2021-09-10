@@ -92,7 +92,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
 - **tag**: _-none-_
   ```json
   {
-    "artifactType": "org.cncf.notary.v2",
+    "artifactType": "application/vnd.cncf.notary.v2",
     "blobs": [
       {
         "mediaType": "application/tar",
@@ -123,7 +123,7 @@ The SBoM content would be persisted as one or more `[blobs]` with a `subject` re
 - **tag**: _-none-_
   ```json
   {
-    "artifactType": "example.sbom.v0",
+    "artifactType": "sbom/example",
     "blobs": [
       {
         "mediaType": "application/tar",
@@ -151,7 +151,7 @@ The  `net-monitor:v1` SBoM may also be signed, providing yet another leaf node.
 - **tag**: _-none-_
   ```json
   {
-    "artifactType": "org.cncf.notary.v2",
+    "artifactType": "application/vnd.cncf.notary.v2",
     "blobs": [
       {
         "mediaType": "application/tar",
