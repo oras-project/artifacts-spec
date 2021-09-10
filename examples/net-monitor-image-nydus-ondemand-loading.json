@@ -1,5 +1,4 @@
 {
-  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
   "artifactType": "org.cncf.nydus.v1",
   "blobs": [
     {

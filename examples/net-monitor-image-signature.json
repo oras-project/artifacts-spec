@@ -1,5 +1,4 @@
 {
-  "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
   "artifactType": "org.cncf.notary.v2",
   "blobs": [
     {
