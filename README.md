@@ -34,6 +34,115 @@ The ORAS Artifacts specs will build upon the [OCI distribution-spec][oci-distrib
 
 The approach to reference types is based on a new [artifact.manifest][artifact-manifest-spec], enabling registries and clients to opt-into the behavior, with clear and consistent expectations.
 
+## Quick Start (Option A)
+
+- Setup a few environment variables.  
+  ```bash
+  export PORT=5000
+  export REGISTRY=localhost:${PORT}
+  export REPO=net-monitor
+  export IMAGE=${REGISTRY}/${REPO}:v1
+  ```
+- Install the [ORAS client][oras-releases]
+- Run a local instance of the CNCF Distribution Registry][cncf-distribution]
+  ```bash
+  docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:latest
+  ```
+- Build and Push `$IMAGE`
+  ```bash
+  docker build -t $IMAGE https://github.com/wabbit-networks/net-monitor.git#main
+  docker push $IMAGE
+  ```
+- Push an SBoM
+  ```bash
+  echo '{"version": "0.0.0.0", "artifact": "'${IMAGE}'", "contents": "good"}' > sbom.json
+  oras push $REGISTRY/$REPO \
+      --artifact-type sbom/example \
+      --subject $IMAGE \
+      --plain-http \
+      sbom.json:application/json
+  echo '{"version": "0.0.0.0", "artifact": "'${IMAGE}'", "signature": "signed"}' > signature.json
+  oras push $REGISTRY/$REPO \
+      --artifact-type signature/example \
+      --subject $IMAGE \
+      --plain-http \
+      signature.json:application/json
+  ```
+- List the tags, notice the additional metadata doesn't pollute the tag listing
+  ```http
+  curl $REGISTRY/v2/$REPO/tags/list | jq
+  ```
+- Get referenced artifacts with the `/referrers/` API
+  ```bash
+  DIGEST=$(oras discover $IMAGE --plain-http -o json | jq -r .digest)
+  curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers | jq
+  ```
+- Get a filtered list by `artifactType`
+  ```bash
+  curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample | jq
+  ```
+- Get a filtered list with `oras discover`
+  ```bash
+  oras discover -o tree --plain-http --artifact-type=sbom/example $IMAGE
+  ```
+- Pull a reference artifact by embedding `oras discover`
+  ```shell
+  oras pull -a --plain-http \
+      ${REGISTRY}/${REPO}@$( \
+        oras discover --plain-http \
+          -o json \
+          --artifact-type scan-result/example \
+          $IMAGE | jq -r .references[0].digest)
+  ```
+
+## Quick Start (Option B)
+
+Install the [ORAS client][oras-releases]
+```bash
+# Run a local instance of the CNCF Distribution Registry
+docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:latest
+
+# Build and Push $IMAGE
+docker build -t $IMAGE https://github.com/wabbit-networks/net-monitor.git#main
+docker push $IMAGE
+
+# Push an SBoM
+echo '{"version": "0.0.0.0", "artifact": "'${IMAGE}'", "contents": "good"}' > sbom.json
+oras push $REGISTRY/$REPO \
+    --artifact-type sbom/example \
+    --subject $IMAGE \
+    --plain-http \
+    sbom.json:application/json
+
+# Push an Signature
+echo '{"version": "0.0.0.0", "artifact": "'${IMAGE}'", "signature": "signed"}' > signature.json
+oras push $REGISTRY/$REPO \
+    --artifact-type signature/example \
+    --subject $IMAGE \
+    --plain-http \
+    signature.json:application/json
+
+# List the tags, notice the additional metadata doesn't populate the tag listing
+curl $REGISTRY/v2/$REPO/tags/list | jq
+
+# Get referenced artifacts with the /referrers/ API
+DIGEST=$(oras discover $IMAGE --plain-http -o json | jq -r .digest)
+
+# Get a filtered list by `artifactType`
+curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample | jq
+
+# Get a filtered list with `oras discover`
+oras discover -o tree --plain-http --artifact-type=sbom/example $IMAGE
+
+# Pull a reference artifact by embedding `oras discover`
+oras pull -a --plain-http \
+    ${REGISTRY}/${REPO}@$( \
+      oras discover --plain-http \
+        -o json \
+        --artifact-type scan-result/example \
+        $IMAGE | jq -r .references[0].digest)
+```
+
 ## Comparing the ORAS Artifact Manifest and OCI Image Manifest
 
 OCI Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.
@@ -89,3 +198,5 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [oras-cli]:                         https://github.com/oras-project/oras/tree/reference-types
 [notation]:                         https://github.com/notaryproject/notation
 [release]:                          ./RELEASES.md
+[oras-releases]:                    https://github.com/sajayantony/oras/releases
+[cncf-distribution]:      https://github.com/oras-project/distribution
