@@ -34,6 +34,12 @@ The ORAS Artifacts specs will build upon the [OCI distribution-spec][oci-distrib
 
 The approach to reference types is based on a new [artifact.manifest][artifact-manifest-spec], enabling registries and clients to opt-into the behavior, with clear and consistent expectations.
 
+## Quick Start
+
+[Getting Started with ORAS Artifacts and Supply Chain Reference Types](./docs/quick-start.md)
+
+![quick-start](media/artifact.gif)
+
 ## Comparing the ORAS Artifact Manifest and OCI Image Manifest
 
 OCI Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.
