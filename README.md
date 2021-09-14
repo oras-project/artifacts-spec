@@ -36,9 +36,9 @@ The approach to reference types is based on a new [artifact.manifest][artifact-m
 
 ## Quick Start
 
-[![asciicast](https://asciinema.org/a/435744.svg)](https://asciinema.org/a/435744)
-
 [Getting Started with ORAS Artifacts and Supply Chain Reference Types](./docs/quick-start.md)
+
+![quick-start](media/artifact.gif)
 
 ## Comparing the ORAS Artifact Manifest and OCI Image Manifest
 
