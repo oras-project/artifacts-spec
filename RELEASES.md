@@ -36,7 +36,7 @@ Both the `DRAFT` and the `RC` may include an optional number suffix to indicate 
 
 The tag `AD` should never be used in a SemVer stability marker. `AD` is synonymous with the final release.
 
-Content persisted MUST be version specific via the use of the `"mediaType"` field to assure the specification version is not assumed. For example code implementing `oras-artifacts-spec-1.0.0.DRAFT1` must use `"mediaType": "application/vnd.cncf.oras.artifact.manifest.1.0.0-DRAFT1+json"`.
+Content persisted MUST be version specific to the target version (eg oras-artifacts-spec-1.0.0) via the use of the `"mediaType"` field to assure the specification version is not assumed. For example code implementing `oras-artifacts-spec-1.0.0` must use `"mediaType": "application/vnd.cncf.oras.artifact.manifest.1.0.0+json"`.
 
 The stability markers `ALPHA`, `BETA`, and so on are _disallowed_ under this specification, and MUST NOT be used to express Artifacts specification versions.
 
