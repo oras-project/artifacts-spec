@@ -59,5 +59,15 @@ A quick-start for push, discover, pull
           --artifact-type scan-result/example \
           $IMAGE | jq -r .references[0].digest)
   ```
-[oras-releases]:                    https://github.com/sajayantony/oras/releases
-[cncf-distribution]:                https://github.com/oras-project/distribution
+
+## Further Reading
+
+- [Scenarios](./scenarios.md)
+- [oras.artifact.manifest][artifact-manifest-spec]  spec for persisting artifacts
+- [`/referrers/` API spec][referrers-api]  for discovering artifacts
+
+
+[artifact-manifest-spec]:             ./artifact-manifest.md
+[cncf-distribution]:                  https://github.com/oras-project/distribution
+[oras-releases]:                      https://github.com/oras-project/oras/releases
+[referrers-api]:                      ./manifest-referrers-api.md
