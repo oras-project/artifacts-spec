@@ -12,7 +12,7 @@ A quick-start for push, discover, pull
 - Install the [ORAS client][oras-releases]
 - Run a local instance of the [CNCF Distribution Registry][cncf-distribution]
   ```bash
-  docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:latest
+  docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:v0.0.3-alpha
   ```
 - Build and Push `$IMAGE`
   ```bash
