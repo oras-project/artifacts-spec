@@ -56,7 +56,7 @@ A quick-start for push, discover, pull
       ${REGISTRY}/${REPO}@$( \
         oras discover  \
           -o json \
-          --artifact-type scan-result/example \
+          --artifact-type sbom/example \
           $IMAGE | jq -r .references[0].digest)
   ```
 
