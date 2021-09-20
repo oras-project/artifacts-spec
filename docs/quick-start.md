@@ -44,7 +44,7 @@ A quick-start for push, discover, pull
   ```
 - Get a filtered list by `artifactType`
   ```bash
-  curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample | jq
+  curl "$REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample" | jq
   ```
 - Get a filtered list with `oras discover`
   ```bash
@@ -57,7 +57,7 @@ A quick-start for push, discover, pull
         oras discover  \
           -o json \
           --artifact-type sbom/example \
-          $IMAGE | jq -r .references[0].digest)
+          $IMAGE | jq -r ".references[0].digest")
   ```
 
 ## Further Reading
