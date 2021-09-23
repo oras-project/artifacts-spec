@@ -47,7 +47,9 @@ In future versioned releases, responses MAY be extended to include a `data` fiel
 
 This paged result MUST return the following elements:
 
-- `references`: A list of [artifact descriptors][descriptor] that reference the given `subject`.
+- `references`: A list of [artifact descriptors][descriptor] that reference the given manifest. The list MUST include 
+these references even if the given manifest does not exist in the repository. The list MUST be empty 
+if there are no artifacts referencing the given manifest.
 
 **example result of artifacts that reference the `net-monitor` image:**
 ```json
@@ -66,6 +68,13 @@ This paged result MUST return the following elements:
       "size": 237
     }
   ]
+}
+```
+
+**example result for a manifest that has no artifacts referencing it:**
+```json
+{
+  "references": []
 }
 ```
 
