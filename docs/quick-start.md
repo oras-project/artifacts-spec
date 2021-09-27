@@ -70,4 +70,4 @@ A quick-start for push, discover, pull
 [artifact-manifest-spec]:             ./artifact-manifest.md
 [cncf-distribution]:                  https://github.com/oras-project/distribution
 [oras-releases]:                      https://github.com/oras-project/oras/releases
-[referrers-api]:                      ./manifest-referrers-api.md
+[referrers-api]:                      ../manifest-referrers-api.md
