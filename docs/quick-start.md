@@ -12,7 +12,7 @@ A quick-start for push, discover, pull
 - Install the [ORAS client][oras-releases]
 - Run a local instance of the [CNCF Distribution Registry][cncf-distribution]
   ```bash
-  docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:latest
+  docker run -d -p ${PORT}:5000 ghcr.io/oras-project/registry:v0.0.3-alpha
   ```
 - Build and Push `$IMAGE`
   ```bash
@@ -44,7 +44,7 @@ A quick-start for push, discover, pull
   ```
 - Get a filtered list by `artifactType`
   ```bash
-  curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample | jq
+  curl "$REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample" | jq
   ```
 - Get a filtered list with `oras discover`
   ```bash
@@ -56,8 +56,18 @@ A quick-start for push, discover, pull
       ${REGISTRY}/${REPO}@$( \
         oras discover  \
           -o json \
-          --artifact-type scan-result/example \
-          $IMAGE | jq -r .references[0].digest)
+          --artifact-type sbom/example \
+          $IMAGE | jq -r ".references[0].digest")
   ```
-[oras-releases]:                    https://github.com/sajayantony/oras/releases
-[cncf-distribution]:                https://github.com/oras-project/distribution
+
+## Further Reading
+
+- [Scenarios](./scenarios.md)
+- [oras.artifact.manifest][artifact-manifest-spec]  spec for persisting artifacts
+- [`/referrers/` API spec][referrers-api]  for discovering artifacts
+
+
+[artifact-manifest-spec]:             ./artifact-manifest.md
+[cncf-distribution]:                  https://github.com/oras-project/distribution
+[oras-releases]:                      https://github.com/oras-project/oras/releases
+[referrers-api]:                      ../manifest-referrers-api.md
