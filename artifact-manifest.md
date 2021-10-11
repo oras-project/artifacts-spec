@@ -35,7 +35,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 - **`annotations`** *string-string map*
 
     This OPTIONAL property contains arbitrary metadata for the artifact manifest.
-    This OPTIONAL property MUST use the [annotation rules](annotations.md#rules).
+    This OPTIONAL property MUST use the [annotation rules][annotations-rules].
 
 ### Example ORAS Artifact Manifests
 
@@ -66,4 +66,5 @@ Registries MAY treat the lifecycle of a reference type object, such as an SBoM o
 [oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
 [registering-iana]:                https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#registering-unique-types-with-iana
 [descriptor]:                      ./descriptor.md
-[manifest-differences]: ./README.md#comparing-the-oras-artifact-manifest-and-oci-image-manifest
+[manifest-differences]:            ./README.md#comparing-the-oras-artifact-manifest-and-oci-image-manifest
+[annotations-rules]:               https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules
