@@ -1,10 +1,10 @@
 # Manifest Referrers API
 
 [Artifact-manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts.
-Reference artifacts include Notary v2 signatures, SBoMs and many other types.
+Reference artifacts include signatures, SBoMs and many other types.
 Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference.
 To discover referenced artifacts a manifest `referrers/` API is provided.
-An artifact client, such as a Notary v2 client would parse the returned [artifact descriptors][descriptor], determining which `artifact.manifest` they will pull and process.
+An artifact client would parse the returned [artifact descriptors][descriptor], determining which `artifact.manifest` they will pull and process.
 
 The `referrers/` API returns all artifacts that have a `subject` to given manifest digest.
 Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
@@ -38,7 +38,7 @@ Future Minor versions MUST be additive.
 - Implementations MUST implement [paging](#paging-results).
 - Implementations MAY implement [`artifactType` filtering](#filtering-results).
 
-Some artifacts types including Notary v2 signatures, may return multiple signatures of the same `artifactType`.
+Some artifacts types including signatures, may return multiple signatures of the same `artifactType`.
 For cases where multiple artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine whether or not the full artifact is needed.
 Maintainers of the standards utilizing references SHOULD define standard sets of annotations that will allow clients to determine whether or not each artifact needs to be downloaded in full.
 
@@ -47,7 +47,9 @@ In future versioned releases, responses MAY be extended to include a `data` fiel
 
 This paged result MUST return the following elements:
 
-- `references`: A list of [artifact descriptors][descriptor] that reference the given `subject`.
+- `references`: A list of [artifact descriptors][descriptor] that reference the given manifest. The list MUST include 
+these references even if the given manifest does not exist in the repository. The list MUST be empty 
+if there are no artifacts referencing the given manifest.
 
 **example result of artifacts that reference the `net-monitor` image:**
 ```json
@@ -56,7 +58,7 @@ This paged result MUST return the following elements:
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
-      "artifactType": "application/vnd.cncf.notary.v2",
+      "artifactType": "signature/example",
       "size": 312
     },
     {
@@ -66,6 +68,13 @@ This paged result MUST return the following elements:
       "size": 237
     }
   ]
+}
+```
+
+**example result for a manifest that has no artifacts referencing it:**
+```json
+{
+  "references": []
 }
 ```
 
@@ -148,7 +157,7 @@ GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=10&artifactTy
 **expanded example:**
 
 ```rest
-GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=application%2Fvnd.org.cncf.notary.v2
+GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=signature%2Fexample
 ```
 
 ## Further Reading
