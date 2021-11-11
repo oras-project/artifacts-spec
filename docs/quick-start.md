@@ -34,7 +34,7 @@ A quick-start for push, discover, pull
       signature.json:application/json
   ```
 - List the tags, notice the additional metadata doesn't pollute the tag listing
-  ```bash
+  ```http
   curl $REGISTRY/v2/$REPO/tags/list | jq
   ```
 - Get referenced artifacts with the `/referrers/` API

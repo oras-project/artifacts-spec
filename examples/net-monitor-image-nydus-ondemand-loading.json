@@ -1,6 +1,6 @@
 {
   "artifactType": "application/vnd.cncf.nydus.v1",
-  "blobs": [
+  "descriptors": [
     {
       "mediaType": "application/vnd.cncf.nydus.bootstrap.v1.tar+gzip",
       "digest": "sha256:f6bb0822fe567c98959bb87aa316a565eb1ae059c46fa8bba65b573b4489b44d",

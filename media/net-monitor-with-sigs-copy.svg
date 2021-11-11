@@ -840,7 +840,7 @@
            x="830.94885"
            y="175.2995"
            id="tspan75448-7-1"
-           style="font-weight:bold">signature [blobs]</tspan></text>
+           style="font-weight:bold">signature [descriptors]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -981,7 +981,7 @@
            x="712.37683"
            y="140.05261"
            id="tspan75448-7-6"
-           style="font-weight:bold">sbom [blobs]</tspan></text>
+           style="font-weight:bold">sbom [descriptors]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -1356,7 +1356,7 @@
          x="56.411297"
          y="284.70801"
          id="tspan75448-7"
-         style="font-weight:bold;stroke-width:0.0700043">signature [blobs]</tspan></text>
+         style="font-weight:bold;stroke-width:0.0700043">signature [descriptors]</tspan></text>
     <text
        font-family="Calibri, Calibri_MSFontService, sans-serif"
        font-weight="400"
@@ -1580,7 +1580,7 @@
            x="830.94885"
            y="175.2995"
            id="tspan75448-7-1-0"
-           style="font-weight:bold">signature [blobs]</tspan></text>
+           style="font-weight:bold">signature [descriptors]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -1721,7 +1721,7 @@
            x="712.37683"
            y="140.05261"
            id="tspan75448-7-6-8"
-           style="font-weight:bold">sbom [blobs]</tspan></text>
+           style="font-weight:bold">sbom [descriptors]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -2096,7 +2096,7 @@
          x="228.76433"
          y="284.7598"
          id="tspan75448-7-22"
-         style="font-weight:bold;stroke-width:0.0700043">signature [blobs]</tspan></text>
+         style="font-weight:bold;stroke-width:0.0700043">signature [descriptors]</tspan></text>
     <text
        font-family="Calibri, Calibri_MSFontService, sans-serif"
        font-weight="400"
