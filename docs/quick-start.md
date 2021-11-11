@@ -42,9 +42,13 @@ A quick-start for push, discover, pull
   DIGEST=$(oras discover $IMAGE -o json | jq -r .digest)
   curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers | jq
   ```
+- Get a tree of references with `oras discover`
+  ```bash
+  oras discover -o tree $IMAGE
+  ```
 - Get a filtered list by `artifactType`
   ```bash
-  curl $REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample | jq
+  curl "$REGISTRY/oras/artifacts/v1/net-monitor/manifests/$DIGEST/referrers?artifactType=sbom%2Fexample" | jq
   ```
 - Get a filtered list with `oras discover`
   ```bash
@@ -56,8 +60,8 @@ A quick-start for push, discover, pull
       ${REGISTRY}/${REPO}@$( \
         oras discover  \
           -o json \
-          --artifact-type scan-result/example \
-          $IMAGE | jq -r .references[0].digest)
+          --artifact-type sbom/example \
+          $IMAGE | jq -r ".references[0].digest")
   ```
 
 ## Further Reading
@@ -70,4 +74,4 @@ A quick-start for push, discover, pull
 [artifact-manifest-spec]:             ./artifact-manifest.md
 [cncf-distribution]:                  https://github.com/oras-project/distribution
 [oras-releases]:                      https://github.com/oras-project/oras/releases
-[referrers-api]:                      ./manifest-referrers-api.md
+[referrers-api]:                      ../manifest-referrers-api.md
