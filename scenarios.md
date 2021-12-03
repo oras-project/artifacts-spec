@@ -25,8 +25,8 @@ Untagged artifacts are considered not subject to garbage collection if they have
 
 ### Reference Types Primitives
 - **Reference**: a means to add an artifact to a registry, referencing existing, unchanged, content.
-- **Reference Discovery API**, where the consumer finds referenced artifacts by querying what artifacts are related to a `subject` artifact.  
-  For example, what signatures or SBoMs are related to the `net-monitor:v1` container image. See the [manifest-referrers api][referrers-api] for details.
+- **Reference Discovery API**, where the consumer finds referenced artifacts by querying what artifacts are related to a `subject` artifact.
+For example, what signatures or SBoMs are related to the `net-monitor:v1` container image. See the [manifest-referrers api][referrers-api] for details.
 - **Lifecycle management**: as content is added to a registry, how is its lifecycle handled? Can a user find and delete reference artifacts, and how would a registry garbage collect unreferenced content.  
   As registries implement the [distribution-spec][oci-distribution-spec], content may be stored indefinitely. To assure registries MAY implement garbage collection, a manifest is used to identify the intent of the content. The spec doesn't dictate how an lifecycle management must be implemented, rather focuses on a set of consistent expectations for users to have when working across different implementations.
 
@@ -81,7 +81,7 @@ The `net-monitor:v1` container image is persisted as an `oci.image.manifest`, wi
 
 ### Notary v2 Signatures
 
-Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature is pushed with an `manifest.artifactType`, and a `subject` The signature is persisted in the `[blobs]` collection, and a `subject` referencing the `net-monitor:v1` container image (by digest).
+Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature is pushed with an `manifest.artifactType`, and a `subject` The signature is persisted in the `[descriptors]` collection as a blob, and a `subject` referencing the `net-monitor:v1` container image (by digest).
 
 ![Notary v2 signature](./media/notaryv2-signature.svg)
 
@@ -94,7 +94,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "application/vnd.cncf.notary.v2",
-    "blobs": [
+    "descriptors": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
@@ -115,7 +115,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
 ### SBoM
 
 The same `net-monitor:v1` container image may have an associated SBoM.
-The SBoM content would be persisted as one or more `[blobs]` with a `subject` referencing the `net-monitor:v1` container image (by digest).
+The SBoM content would be persisted as blobs in one or more `[descriptors]` with a `subject` referencing the `net-monitor:v1` container image (by digest).
 
 ![Sample SBOM](./media/net-monitor-sbom.svg)
 
@@ -126,7 +126,7 @@ The SBoM content would be persisted as one or more `[blobs]` with a `subject` re
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "sbom/example",
-    "blobs": [
+    "descriptors": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
@@ -155,7 +155,7 @@ The  `net-monitor:v1` SBoM may also be signed, providing yet another leaf node.
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "application/vnd.cncf.notary.v2",
-    "blobs": [
+    "descriptors": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
