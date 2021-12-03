@@ -12,6 +12,10 @@ This section defines the `application/vnd.cncf.oras.artifact.manifest.v1+json` m
 
 The `artifact.manifest` provides an optional collection of `descriptors`, an optional `subject` reference to the manifest of another artifact and an `artifactType` to differentiate types of artifacts (such as signatures, sboms and security scan results)
 
+- **`mediaType`** *string*
+
+  This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [image-index][oci-image-index]. The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions.
+   
 - **`artifactType`** *string*
 
   The REQUIRED `artifactType` is a unique value, as registered with [iana.org][registering-iana].
