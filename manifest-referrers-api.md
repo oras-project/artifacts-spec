@@ -36,7 +36,7 @@ Future Minor versions MUST be additive.
 ## Artifact Referrers API results
 
 - Implementations MUST implement [paging](#paging-results).
-- Implementations MAY implement [`artifactType` filtering](#filtering-results).
+- Implementations SHOULD implement [`artifactType` filtering](#filtering-results).
 
 Some artifacts types including signatures, may return multiple signatures of the same `artifactType`.
 For cases where multiple artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine whether or not the full artifact is needed.
@@ -47,8 +47,8 @@ In future versioned releases, responses MAY be extended to include a `data` fiel
 
 This paged result MUST return the following elements:
 
-- `references`: A list of [artifact descriptors][descriptor] that reference the given manifest. The list MUST include 
-these references even if the given manifest does not exist in the repository. The list MUST be empty 
+- `references`: A list of [artifact descriptors][descriptor] that reference the given manifest. The list MUST include
+these references even if the given manifest does not exist in the repository. The list MUST be empty
 if there are no artifacts referencing the given manifest.
 
 **example result of artifacts that reference the `net-monitor` image:**
@@ -129,7 +129,7 @@ construct it themselves.
   response.
 * If the header is not present, clients can assume that all items have been received.
 
-> NOTE: In the request template above, the brackets around the url are required. 
+> NOTE: In the request template above, the brackets around the url are required.
 
 For example, if the url is:
 ```
@@ -143,11 +143,12 @@ Please see [RFC5988][rfc5988] for details.
 
 ### Filtering Results
 
-The `/referrers` API MAY provide for filtering of `artifactTypes`.
-Artifact clients MUST account for implementations that MAY NOT support filtering.
-Artifact clients MUST revert to client side filtering to determine which `artifactTypes` they will process.
+The `/referrers` API SHOULD provide for filtering by `artifactType`.
+If an implementation does not support filtering by `artifactType` and it receives a request with filter parameters, it MUST return a 400 error with a `FILTERING_UNSUPPORTED` code.
+Artifact clients SHOULD account for implementations that MAY NOT support filtering by making a new request without the filter parameters.
+Artifact clients SHOULD then revert to client side filtering to determine which `artifactTypes` they will process.
 
-Request referenced artifacts by `artifactType`
+Request referenced artifacts by `artifactType`:
 
 **template:**
 ```rest
@@ -158,6 +159,24 @@ GET /oras/artifacts/v1/{repository}/manifests/{digest}/referrers?n=10&artifactTy
 
 ```rest
 GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=signature%2Fexample
+```
+
+**filtering not supported example:**
+
+```
+GET /oras/artifacts/v1/net-monitor/manifests/sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b/referrers?n=10&artifactType=signature%2Fexample
+
+Response Code: 400 Bad Request
+Response Body:
+{
+  "errors": [
+    {
+      "code": "FILTERING_UNSUPPORTED",
+      "message": "<optional error message>",
+      "detail": "<unstructured data>"
+    }
+  ]
+}
 ```
 
 ## Further Reading
