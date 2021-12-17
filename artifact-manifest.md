@@ -15,7 +15,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 - **`mediaType`** *string*
 
   This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [image-index][oci-image-index]. The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions.
-   
+
 - **`artifactType`** *string*
 
   The REQUIRED `artifactType` is a unique value, as registered with [iana.org][registering-iana].
@@ -29,7 +29,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
     - Each item in the array MUST be an [artifact descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
     - The max number of blobs is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
     - An encountered `[descriptors].descriptor.mediaType` that is unknown to the implementation MUST be persisted as a blob.
-    
+
 
 - **`subject`** *descriptor*
 
@@ -40,6 +40,11 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
     This OPTIONAL property contains arbitrary metadata for the artifact manifest.
     This OPTIONAL property MUST use the [annotation rules][annotations-rules].
+    This map MAY contain some or all of the pre-defined keys listed below.
+
+    **Pre-Defined Annotation Keys:**
+    This defines a set of keys that have been pre-defined for use by authors of ORAS artifacts.
+    - `org.cncf.oras.artifact.created` date and time on which the artifact was created (string, date-time as defined by [RFC 3339][rfc-3339])
 
 ### Example ORAS Artifact Manifests
 
@@ -62,13 +67,14 @@ Registries MAY treat the lifecycle of a reference type object, such as an SBoM o
 - [Comparing the ORAS Artifact Manifest and OCI Image Manifest][manifest-differences]
 - [Referrers API](./manifest-referrers-api.md) for more information on listing references
 
-[oci-artifacts]:                   https://github.com/opencontainers/artifacts
-[oci-artifact-authors]:            https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md
-[oci-image-manifest-spec]:         https://github.com/opencontainers/image-spec/blob/master/manifest.md
-[oci-image-manifest-spec-layers]:  https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions
-[oci-image-index]:                 https://github.com/opencontainers/image-spec/blob/master/image-index.md
-[oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
-[registering-iana]:                https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#registering-unique-types-with-iana
+[annotations-rules]:               https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules
 [descriptor]:                      ./descriptor.md
 [manifest-differences]:            ./README.md#comparing-the-oras-artifact-manifest-and-oci-image-manifest
-[annotations-rules]:               https://github.com/opencontainers/image-spec/blob/main/annotations.md#rules
+[oci-artifact-authors]:            https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md
+[oci-artifacts]:                   https://github.com/opencontainers/artifacts
+[oci-distribution-spec]:           https://github.com/opencontainers/distribution-spec
+[oci-image-index]:                 https://github.com/opencontainers/image-spec/blob/master/image-index.md
+[oci-image-manifest-spec-layers]:  https://github.com/opencontainers/image-spec/blob/master/manifest.md#image-manifest-property-descriptions
+[oci-image-manifest-spec]:         https://github.com/opencontainers/image-spec/blob/master/manifest.md
+[registering-iana]:                https://github.com/opencontainers/artifacts/blob/master/artifact-authors.md#registering-unique-types-with-iana
+[rfc-3339]:                        https://tools.ietf.org/html/rfc3339#section-5.6
