@@ -3,18 +3,18 @@
 [Artifact-manifest](./artifact-manifest.md) provides the ability to reference artifacts to existing artifacts.
 Reference artifacts include signatures, SBoMs and many other types.
 Artifacts that reference other artifacts SHOULD NOT be tagged, as they are considered enhancements to the artifacts they reference.
-To discover referenced artifacts a `referrers/` extension API is provided.
-An artifact client would parse the returned [artifact descriptors][descriptor], determining which `artifact.manifest` they will pull and process.
+The `referrers` extension API is provided to discover these artifacts.
+An artifact client would parse the returned [artifact descriptors][descriptor], determining which  artifact manifest they will pull and process.
 
-The `referrers/` API returns all artifacts that have a `subject` to given manifest digest.
-Referenced artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
+The `referrers` API returns all artifacts that have a `subject` of the given manifest digest.
+Reference artifact requests are scoped to a repository, ensuring access rights for the repository can be used as authorization for the referenced artifacts.
 
 Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subject`][oras.artifact.manifest-spec-manifests] property.
 
 ## API Path
 
-The `referrers/` api are provided on the [distribution-spec][oci-distribution-spec] paths as described below.
-Pathing within the referrers api provides consistent namespace/repo paths, enabling registry operators to implement consistent auth access, using existing tokens for content.
+The `referrers` api are provided on the [distribution-spec][oci-distribution-spec] paths as described below.
+Pathing of the referrers api provides consistent namespace/repository paths, enabling registry operators to implement consistent auth access, using existing tokens for content.
 
 **template:**
 
@@ -55,15 +55,16 @@ In future versioned releases, responses MAY be extended to include a `data` fiel
 
 This paged result MUST return the following elements:
 
-- `references`: A list of [artifact descriptors][descriptor] that reference the given manifest. The list MUST include 
-these references even if the given manifest does not exist in the repository. The list MUST be empty 
+- `referrers`: A list of [artifact descriptors][descriptor] that reference the
+given manifest. The list MUST include these references even if the given
+manifest does not exist in the repository. The list MUST be empty
 if there are no artifacts referencing the given manifest.
 
 **example result of artifacts that reference the `net-monitor` image:**
 
 ```json
 {
-  "references": [
+  "referrers": [
     {
       "digest": "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b",
       "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
@@ -84,13 +85,13 @@ if there are no artifacts referencing the given manifest.
 
 ```json
 {
-  "references": []
+  "referrers": []
 }
 ```
 
 ### Paging Results
 
-The `/referrers` API MUST provide for paging, returning a list of [artifact descriptors](./descriptor.md).
+The `referrers` API MUST provide for paging, returning a list of [artifact descriptors](./descriptor.md).
 Page size can be specified by adding a `n` parameter to the request URL, indicating that the response should be limited to `n` results.
 
 - If specified, servers MAY return up to `n` items from the entire result set.
@@ -119,7 +120,7 @@ ORAS-Api-Version:oras/1.0
 Link: <url>; rel="next"
 
 {
-  "references": [
+  "referrers": [
     {
       "digest": "<string>",
       "mediaType": "<string>",
@@ -158,7 +159,7 @@ Please see [RFC5988][rfc5988] for details.
 
 ### Filtering Results
 
-The `/referrers` API MAY provide for filtering of `artifactTypes`.
+The `referrers` API MAY provide for filtering of `artifactTypes`.
 Artifact clients MUST account for implementations that MAY NOT support filtering.
 Artifact clients MUST revert to client side filtering to determine which `artifactTypes` they will process.
 

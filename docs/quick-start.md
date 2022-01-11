@@ -61,7 +61,7 @@ A quick-start for push, discover, pull
         oras discover  \
           -o json \
           --artifact-type sbom/example \
-          $IMAGE | jq -r ".references[0].digest")
+          $IMAGE | jq -r ".referrers[0].digest")
   ```
 
 ## Further Reading
