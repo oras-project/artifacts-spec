@@ -10,8 +10,12 @@ This section defines the `application/vnd.cncf.oras.artifact.manifest.v1+json` m
 
 ## ORAS Artifact Manifest Properties
 
-The `artifact.manifest` provides an optional collection of `blobs`, an optional reference to the manifest of another artifact and an `artifactType` to differentiate different types of artifacts (such as signatures, sboms and security scan results)
+The `artifact.manifest` provides an optional collection of `descriptors`, an optional `subject` reference to the manifest of another artifact and an `artifactType` to differentiate types of artifacts (such as signatures, sboms and security scan results)
 
+- **`mediaType`** *string*
+
+  This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [image-index][oci-image-index]. The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions.
+   
 - **`artifactType`** *string*
 
   The REQUIRED `artifactType` is a unique value, as registered with [iana.org][registering-iana].
@@ -19,13 +23,15 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
   Examples include `sbom/example`, `application/vnd.cncf.notary.v2`.
   For details on creating a unique `artifactType`, see [OCI Artifact Authors Guidance][oci-artifact-authors]
 
-- **`blobs`** *array of objects*
+- **`descriptors`** *array of objects*
 
-    An OPTIONAL collection of 0 or more blobs. The blobs array is analogous to [oci.image.manifest layers][oci-image-manifest-spec-layers], however unlike [image-manifest][oci-image-manifest-spec], the ordering of blobs is specific to the artifact type. Some artifacts may choose an overlay of files, while other artifact types may store independent collections of files.
+    An OPTIONAL collection of 0 or more descriptors, representing blobs. The descriptors array is analogous to [oci.image.manifest layers][oci-image-manifest-spec-layers], however unlike [image-manifest][oci-image-manifest-spec], the ordering of descriptors is specific to the artifact type. Some artifacts may choose an overlay of files, while other artifact types may store independent collections of files.
 
     - Each item in the array MUST be an [artifact descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
-    - The max number of blobs is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
-    - An encountered `[blobs].descriptor.mediaType` that is unknown to the implementation MUST be ignored.
+    - The max number of descriptors is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
+    - Each descriptor must be persisted as a blob. The collection is named descriptors to reserve _future_, versioned extensibility where descriptors MAY contain manifest references.
+    - An encountered `[descriptors].descriptor.mediaType` that is unknown to the implementation MUST be persisted as a blob.
+    
 
 - **`subject`** *descriptor*
 
@@ -46,7 +52,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
 ## Push Validation
 
-Following the [distribution-spec push api](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#push), all `blobs` *and* the `subject` descriptors SHOULD exist when pushed to a distribution instance.
+Following the [distribution-spec push api](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#push), all `descriptor` references to blobs *and* the `subject` descriptors SHOULD exist when pushed to a distribution instance.
 
 ## Lifecycle Management
 
