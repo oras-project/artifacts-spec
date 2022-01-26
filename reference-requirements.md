@@ -61,7 +61,7 @@ This requirement is highlighted in the fallback scenarios as some proposals have
 
 ### Scenario 7: Annotation Only Support
 
-There are a set of scenarios that may require minimal content to be added as a reference. Users may wish to add additional metadata to existing artifacts, such as a expiration date, by which the artifact should be purged, or attestations such as the image was SBoM validated, and approved for policy abc123. While these bits of metadata could be persisted as blobs, the additional storage and levels of indirection are unnecessary. These attestations and signatures can be persisted as a set of short length annotations. The [ORAS Artifact manifest](artifact-manifest.md#oras-artifact-manifest-properties) supports zero or more blobs, enabling manifests to be persisted as a collection of annotations.
+There are a set of scenarios that may require minimal content to be added as a reference. Users may wish to add additional metadata to existing artifacts, such as a expiration date, by which the artifact should be purged, or attestations such as the image was SBoM validated, and approved for policy abc123. While these bits of metadata could be persisted as blobs, the additional storage and levels of indirection are unnecessary. These attestations and signatures can be persisted as a set of short length annotations.
 
 ### Scenario 8: Lifecycle Management
 
@@ -94,7 +94,7 @@ The design of independent reference artifacts avoids contention and race conditi
 
  A signature, attestation, or possibly platform aggregated SBoM may be associated with an OCI Index. While it's debateable if a single SBoM _should_ be used to represent multiple architectures, as opposed to each architecture has its own SBoM, the reference type design should be flexible for other reference types that may be more applicable. For example, [CNAB](https://cnab.io)s are independent artifacts that happen to use OCI index as their representation.
 
- ### Scenario 15: Tag Listing Clarity
+### Scenario 15: Tag Listing Clarity
 
 The ORAS Artifact manifest enables a graph of artifacts to be represented through a top level tag. This maintains existing automated and human workflows where a tag represents the root artifact the user and/or workflow depend upon. 
  A fallback may utilize a tag matching pattern. While is does solve some problems, it introduces others where users expect the tags to represent the primary artifacts, (container image, helm chart, wasm). The expectation a registry may implement patterned tag filtering is in the "registry code change" bucket.
