@@ -33,7 +33,7 @@ The development team uses tags or digests for their container references in thei
 
 The `net-monitor:v1` image is pushed to the registry as part of a build system. A [detached signature is pushed](./scenarios.md#notary-v2-signatures) attesting to where the image was built. The detached signature is pulled, independently from the image to validate the signature without having to pull the container image. 
 
-![signed image](media/notaryv2-signature.svg)
+<img src="./media/notaryv2-signature.png" width="400">
 
 ### Scenarios 3: Pushing multi-level Reference Types
 
@@ -41,7 +41,7 @@ As the `net-monitor:v1` image is pushed to the registry, a notification triggers
 
 Within the build system, an SBoM is generated alongside the container image. The image, image signature, SBoM and SBoM signature are all pushed tto the registry as a graph of artifacts.
 
-![signed image with a signed SBoM](media/net-monitor-graph.svg)
+<img src="./media/net-monitor-graph.png" width="400">
 
 ### Scenarios 4: Support for Tag Locking (Immutable Tags)
 
@@ -109,7 +109,7 @@ A single level reference, where a signature establishes a `subject` to the conta
 
 In the following example, both the **wabbit-networks** and **acme rockets** registries support the oras artifact manifest. As the manifests are copied across registries, all the digest references are maintained as the manifests are copied without changes.
 
-![oras to oras registry promotion](./media/interop-oras-to-oras.svg)
+![oras to oras registry promotion](./media/interop-oras-to-oras.png)
 
 ### Incompatible Registry Promotion
 
@@ -117,7 +117,7 @@ In the following example, the **cogswell cogs** registry does not support the OR
 
 However the sub-nested references (SBoM signature) lose their reference. The SBoM manifest changed, therefore the signature of the SBoM no longer has a valid reference. 
 
-![oras to oras registry promotion](./media/interop-oras-to-oci1.1.svg)
+![oras to oras registry promotion](./media/interop-oras-to-oci1.1.png)
 
 ## Comparison of Options
 
