@@ -34,7 +34,7 @@ A quick-start for push, discover, pull
       signature.json:application/json
   ```
 - List the tags, notice the additional metadata doesn't pollute the tag listing
-  ```bash
+  ```http
   curl $REGISTRY/v2/$REPO/tags/list | jq
   ```
 - Get referenced artifacts with the `/referrers/` API
@@ -61,7 +61,7 @@ A quick-start for push, discover, pull
         oras discover  \
           -o json \
           --artifact-type sbom/example \
-          $IMAGE | jq -r ".references[0].digest")
+          $IMAGE | jq -r ".referrers[0].digest")
   ```
 
 ## Further Reading
