@@ -6,7 +6,7 @@ The [ORAS Artifacts spec](https://github.com/oras-project/artifacts-spec/) accou
 
 To account for registries that have not yet implemented ORAS Artifacts, a fallback design will be provided. The assumption is the fallback will have some tradeoffs, as a fallback that implements the full set of requirements would question why a new manifest and referrers api would be required.
 
-The following captures the requirements as a comparison for different implementations. The implementations should account for zero changes to registries that implement the [OCI Distribution-spec 1.1 ](https://github.com/opencontainers/distribution-spec/releases/tag/v1.0.1) to the full [ORAS Artifacts spec](README.md).
+The following captures the scenarios as a comparison for different proposals. The proposals should account for zero changes to registries that implement the [OCI Distribution-spec 1.1 ](https://github.com/opencontainers/distribution-spec/releases/tag/v1.0.1) to the full [ORAS Artifacts spec](README.md). Based on a set of proposals, a fallback design will be chosen, documented so ORAS Artifacts may be promoted to/from OCI 1.1 registries to registries that implement the ORAS Artifacts spec.
 
 ## Definitions
 
@@ -109,7 +109,7 @@ A single level reference, where a signature establishes a `subject` to the conta
 
 In the following example, both the **wabbit-networks** and **acme rockets** registries support the oras artifact manifest. As the manifests are copied across registries, all the digest references are maintained as the manifests are copied without changes.
 
-![oras to oras registry promotion](./media/interop-oras-to-oras.png)
+<img src="./media/interop-oras-to-oras.png" width="900">
 
 ### Incompatible Registry Promotion
 
@@ -117,7 +117,7 @@ In the following example, the **cogswell cogs** registry does not support the OR
 
 However the sub-nested references (SBoM signature) lose their reference. The SBoM manifest changed, therefore the signature of the SBoM no longer has a valid reference. 
 
-![oras to oras registry promotion](./media/interop-oras-to-oci1.1.png)
+<img src="./media/interop-oras-to-oci1.1.png" width="900">
 
 ## Comparison of Options
 
