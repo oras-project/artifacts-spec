@@ -81,7 +81,7 @@ The `net-monitor:v1` container image is persisted as an `oci.image.manifest`, wi
 
 ### Notary v2 Signatures
 
-Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature is pushed with an `manifest.artifactType`, and a `subject` The signature is persisted in the `[descriptors]` collection as a blob, and a `subject` referencing the `net-monitor:v1` container image (by digest).
+Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature is pushed with an `manifest.artifactType`, and a `subject` The signature is persisted in the `[blobs]` collection, and a `subject` referencing the `net-monitor:v1` container image (by digest).
 
 ![Notary v2 signature](./media/notaryv2-signature.svg)
 
@@ -94,7 +94,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "application/vnd.cncf.notary.v2",
-    "descriptors": [
+    "blobs": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
@@ -115,7 +115,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
 ### SBoM
 
 The same `net-monitor:v1` container image may have an associated SBoM.
-The SBoM content would be persisted as blobs in one or more `[descriptors]` with a `subject` referencing the `net-monitor:v1` container image (by digest).
+The SBoM content would be persisted as one or more `[blobs]` with a `subject` referencing the `net-monitor:v1` container image (by digest).
 
 ![Sample SBOM](./media/net-monitor-sbom.svg)
 
@@ -126,7 +126,7 @@ The SBoM content would be persisted as blobs in one or more `[descriptors]` with
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "sbom/example",
-    "descriptors": [
+    "blobs": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
@@ -155,7 +155,7 @@ The  `net-monitor:v1` SBoM may also be signed, providing yet another leaf node.
   {
     "mediaType": "application/vnd.cncf.oras.artifact.manifest.v1+json",
     "artifactType": "application/vnd.cncf.notary.v2",
-    "descriptors": [
+    "blobs": [
       {
         "mediaType": "application/tar",
         "digest": "sha256:9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
