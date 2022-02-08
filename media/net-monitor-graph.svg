@@ -349,7 +349,7 @@
            x="830.94885"
            y="175.2995"
            id="tspan75448-7-1"
-           style="font-weight:bold">signature [descriptors]</tspan></text>
+           style="font-weight:bold">signature [blobs]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -490,7 +490,7 @@
            x="712.37683"
            y="140.05261"
            id="tspan75448-7-6"
-           style="font-weight:bold">sbom [descriptors]</tspan></text>
+           style="font-weight:bold">sbom [blobs]</tspan></text>
       <text
          font-family="Calibri, Calibri_MSFontService, sans-serif"
          font-weight="400"
@@ -865,7 +865,7 @@
          x="70.740349"
          y="89.949539"
          id="tspan75448-7"
-         style="font-weight:bold;stroke-width:0.0700043">signature [descriptors]</tspan></text>
+         style="font-weight:bold;stroke-width:0.0700043">signature [blobs]</tspan></text>
     <text
        font-family="Calibri, Calibri_MSFontService, sans-serif"
        font-weight="400"

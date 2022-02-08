@@ -51,9 +51,9 @@ The high-level differences between the `oci.image.manifest` and the `oras.artifa
 
 | OCI Image Manifest | ORAS Artifacts Manifest |
 |-|-|
-| `config` REQUIRED | `config` OPTIONAL as it's just another entry in the `descriptors` collection with a config `mediaType` |
-| `layers` REQUIRED | `descriptors` are OPTIONAL blobs, which were renamed from `layers` to reflect general usage |
-| `layers` ORDINAL | `descriptors` are blobs, defined by the specific artifact spec. For example, Helm utilizes two independent, non-ordinal blobs, while other artifact types like container images may require blobs to be ordinal |
+| `config` REQUIRED | `config` OPTIONAL as it's just another entry in the `blobs` collection with a config `mediaType` |
+| `layers` REQUIRED | `blobs` are OPTIONAL, which were renamed from `layers` to reflect general usage |
+| `layers` ORDINAL | `blobs` are defined by the specific artifact spec. For example, Helm utilizes two independent, non-ordinal blobs, while other artifact types like container images may require blobs to be ordinal |
 | `manifest.config.mediaType` used to uniquely identify artifact types. | `manifest.artifactType` added to lift the workaround for using `manifest.config.mediaType` on a REQUIRED, but not always used `config` property. Decoupling `config.mediaType` from `artifactType` enables artifacts to OPTIONALLY share config schemas. |
 | | `subject` OPTIONAL, enabling an artifact to extend another artifact (SBOM, Signatures, Nydus, Scan Results)
 | | `/referrers` api for discovering referenced artifacts, with the ability to filter by `artifactType` |
