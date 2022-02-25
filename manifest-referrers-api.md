@@ -11,6 +11,36 @@ Reference artifact requests are scoped to a repository, ensuring access rights f
 
 Artifact references are defined in the [artifact-manifest][oras.artifact.manifest-spec] spec through the [`subject`][oras.artifact.manifest-spec-manifests] property.
 
+## API Discovery
+
+API discovery follows the  [OCI extensions specification][distribution-extension].
+Clients can check for the support of the `referrers` API by making a
+GET request to the OCI extensions discovery endpoint under a respository as
+shown below.
+
+```http
+GET /v2/{repository}/_oci/ext/discover
+```
+
+The reponse SHOULD contain an extension with the name of `cncf.oras.referrers`
+and the `url` path where the referrers can be requested.
+
+```http
+200 OK
+Content-Length: <length>
+Content-Type: application/json
+
+{
+    "extensions": [
+        {
+            "name": "cncf.oras.referrers",
+            "description": "ORAS referrers listing API",
+            "url": "_oras/artifacts/referrers"
+        }
+    ]
+}
+```
+
 ## API Path
 
 The `referrers` api are provided on the [distribution-spec][oci-distribution-spec] paths as described below.
@@ -188,3 +218,4 @@ GET /v2/net-monitor/_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc12745
 [oras.artifact.manifest-spec-manifests]: ./artifact-manifest.md#oras-artifact-manifest-properties
 [oci-distribution-spec]:                 https://github.com/opencontainers/distribution-spec
 [rfc5988]:                               https://datatracker.ietf.org/doc/html/rfc5988
+[distribution-extension]:                https://github.com/opencontainers/distribution-spec/tree/main/extensions
