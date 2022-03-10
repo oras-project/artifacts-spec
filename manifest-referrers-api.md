@@ -44,7 +44,8 @@ ORAS-Api-Version: oras/1.0
 ## Artifact Referrers API results
 
 - Implementations MUST implement [paging](#paging-results).
-- Implementations MAY implement [`artifactType` filtering](#filtering-results).
+- Implementations MUST implement [sorting](#sorting-results)
+- Implementations SHOULD implement [`artifactType` filtering](#filtering-results).
 
 Some artifacts types including signatures, may return multiple signatures of the same `artifactType`.
 For cases where multiple artifacts are returned to the client, it may be necessary to pull each artifact's manifest in order to determine whether or not the full artifact is needed.
@@ -111,8 +112,8 @@ GET /v2/{repository}/_oras/artifacts/referrers?digest={digest}&n=<integer>
 GET /v2/{repository}/_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b&n=10
 ```
 
-The above specifies that a referrers response should be returned limiting the number of results to `n`. There is no
-ordering imposed on the resulting collection. The response to such a request would look as follows:
+The above specifies that a referrers response should be returned limiting the number of results to `n`.
+The response to such a request would look as follows:
 
 ```json
 200 OK
@@ -156,6 +157,13 @@ The value of the header would be:
 ```
 
 Please see [RFC5988][rfc5988] for details.
+
+### Sorting Results
+The `/referrers` API MUST allow for artifacts to be sorted by the date and time in which they were created, which SHOULD be included in the artifact manifest's list of `annotations`.
+The artifact's creation time MUST be the value of the `org.cncf.oras.artifact.created` annotation, as specified in the [artifact-manifest spec][artifact-manifest-spec].
+The results of the `/referrers` API MUST list artifacts that were created more recently first.
+Artifacts that do not have the `org.cncf.oras.artifact.created` annotation MUST appear after those with creation times specified in the list of results.
+There is no specified ordering for artifacts that do not include the creation time in their list of `annotations`.
 
 ### Filtering Results
 
