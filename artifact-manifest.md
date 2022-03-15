@@ -44,7 +44,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
     **Pre-Defined Annotation Keys:**
     This defines a set of keys that have been pre-defined for use by authors of ORAS artifacts.
-    - `org.cncf.oras.artifact.created` date and time on which the artifact was created (string, date-time as defined by [RFC 3339][rfc-3339])
+    - `io.cncf.oras.artifact.created` date and time on which the artifact was created (string, date-time as defined by [RFC 3339][rfc-3339])
 
 ### Example ORAS Artifact Manifests
 
