@@ -1,7 +1,7 @@
 # ORAS Artifact Manifest Spec
 
 The ORAS Artifact manifest is similar to the [OCI image manifest][oci-image-manifest-spec], but removes constraints defined on the image-manifest such as a required `config` object and required & ordinal `layers`.
-It then adds a `subject` property supporting a graph of independent, but link artifacts.
+It adds a `subject` property supporting a graph of independently linked artifacts.
 The addition of a new manifest does not change, nor impact the `image.manifest`.
 It provides a means to define a wide range of artifacts, including a chain of related artifacts enabling SBoMs, on-demand loading, signatures and metadata that can be related to an `image.manifest`, `image.index` or another `artifact.manifest`.
 By defining a new manifest, registries and clients opt-into new capabilities, without breaking existing registry and client behavior or setting expectations for scenarios to function when the client and/or registry may not yet implement new capabilities.
@@ -44,7 +44,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
     **Pre-Defined Annotation Keys:**
     This defines a set of keys that have been pre-defined for use by authors of ORAS artifacts.
-    - `org.cncf.oras.artifact.created` date and time on which the artifact was created (string, date-time as defined by [RFC 3339][rfc-3339])
+    - `io.cncf.oras.artifact.created` date and time on which the artifact was created (string, date-time as defined by [RFC 3339][rfc-3339])
 
 ### Example ORAS Artifact Manifests
 
