@@ -190,9 +190,9 @@ Please see [RFC5988][rfc5988] for details.
 
 ### Sorting Results
 The `/referrers` API MUST allow for artifacts to be sorted by the date and time in which they were created, which SHOULD be included in the artifact manifest's list of `annotations`.
-The artifact's creation time MUST be the value of the `org.cncf.oras.artifact.created` annotation, as specified in the [artifact-manifest spec][artifact-manifest-spec].
+The artifact's creation time MUST be the value of the `io.cncf.oras.artifact.created` annotation, as specified in the [artifact-manifest spec][artifact-manifest-spec].
 The results of the `/referrers` API MUST list artifacts that were created more recently first.
-Artifacts that do not have the `org.cncf.oras.artifact.created` annotation MUST appear after those with creation times specified in the list of results.
+Artifacts that do not have the `io.cncf.oras.artifact.created` annotation MUST appear after those with creation times specified in the list of results.
 There is no specified ordering for artifacts that do not include the creation time in their list of `annotations`.
 
 ### Filtering Results
