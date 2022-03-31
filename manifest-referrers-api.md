@@ -190,7 +190,7 @@ The value of the header would be:
 or 
 
 ```
-</_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b&n=5&nextToken=abc>; rel="next"`.
+</v2/hello-world/_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b&n=5&nextToken=abc>; rel="next"`.
 ```
 
 Please see [RFC5988][rfc5988] for details.
