@@ -169,7 +169,7 @@ encoded in a [RFC5988][rfc5988] `Link` header, as a "next" relation.
 - The presence of the `Link` header communicates to the client that the server has more items. Clients are expected
   to follow the link to fetch the next page of items, irrespective of the number of items received in the current
   response.
-- The value in `Link` header can be absolute or relative url. Clients MUST parse the value and compose the full url with the appropriate host.
+- The value in `Link` header SHOULD be relative url. Clients MUST parse the value and compose the full url with the appropriate host.
 - If the header is not present, clients can assume that all items have been received.
 
 > NOTE: In the request template above, the brackets around the url are required.
@@ -181,13 +181,6 @@ http://example.com/v2/hello-world/_oras/artifacts/referrers?digest=sha256:3c3a46
 ```
 
 The value of the header would be:
-
-
-```
-<http://example.com/v2/hello-world/_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b&n=5&nextToken=abc>; rel="next"`.
-```
-
-or 
 
 ```
 </v2/hello-world/_oras/artifacts/referrers?digest=sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b&n=5&nextToken=abc>; rel="next"`.
