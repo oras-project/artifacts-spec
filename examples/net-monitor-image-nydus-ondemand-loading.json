@@ -24,6 +24,6 @@
     "size": 16724
   },
   "annotations": {
-    "org.cncf.nydus.v1.author": "wabbit-networks.io"
+    "io.cncf.nydus.v1.author": "wabbit-networks.io"
   }
 }

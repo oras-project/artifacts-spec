@@ -59,7 +59,9 @@ The high-level differences between the `oci.image.manifest` and the `oras.artifa
 | | `/referrers` api for discovering referenced artifacts, with the ability to filter by `artifactType` |
 | | Lifecycle management defined, starting to provide standard expectations for how users can manage their content |
 
-For more info, see: [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
+For more info, see:
+- [Proposal: Decoupling Registries from Specific Artifact Specs #91](https://github.com/oras-project/artifacts-spec/discussions/91)
+- [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
 
 ## Project status
 
@@ -92,6 +94,6 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [cncf-distribution-artifacts]:      https://github.com/oras-project/distribution/releases/tag/v0.0.3-alpha
 [artifact-manifest-spec]:           ./artifact-manifest.md
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
-[oras-cli]:                         https://github.com/oras-project/oras/releases/tag/v0.2.0-alpha.1
+[oras-cli]:                         https://github.com/oras-project/oras/releases/tag/v0.2.1-alpha.1
 [notation]:                         https://github.com/notaryproject/notation
-[release]:                          https://github.com/oras-project/artifacts-spec/releases/tag/1.0.0-draft.1
+[release]:                          https://github.com/oras-project/artifacts-spec/releases/tag/v1.0.0-draft.1.1

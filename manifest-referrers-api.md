@@ -22,7 +22,7 @@ shown below.
 GET /v2/{repository}/_oci/ext/discover
 ```
 
-The reponse SHOULD contain an extension with the name of `cncf.oras.referrers`
+The response SHOULD contain an extension with the name of `cncf.oras.referrers`
 and the `url` path where the referrers can be requested.
 
 ```http
@@ -189,6 +189,7 @@ The value of the header would be:
 Please see [RFC5988][rfc5988] for details.
 
 ### Sorting Results
+
 The `/referrers` API MUST allow for artifacts to be sorted by the date and time in which they were created, which SHOULD be included in the artifact manifest's list of `annotations`.
 The artifact's creation time MUST be the value of the `io.cncf.oras.artifact.created` annotation, as specified in the [artifact-manifest spec][artifact-manifest-spec].
 The results of the `/referrers` API MUST list artifacts that were created more recently first.
