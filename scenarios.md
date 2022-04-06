@@ -364,7 +364,7 @@ As the referenced types are defined by the `manifest.subject`, copying specific 
 oci-reg copy \
   --source docker.io/wabbitnetworks/net-monitor:v1 \
   --target registry.acme-rockets.io/base-artifacts/net-monitor:v1 \
-  --include-references io.cncf.notary.v2
+  --include-references io.cncf.notary
 ```
 
 ### Lifecycle Management
@@ -388,7 +388,7 @@ oci-reg delete-references registry.acme-rockets.io/net-monitor:v1
 
 ```bash
 oci-reg delete-references \
-  --referenceType io.cncf.notary.v2 \
+  --referenceType io.cncf.notary \
   registry.acme-rockets.io/net-monitor:v1
 ```
 
