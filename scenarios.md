@@ -168,7 +168,7 @@ The  `net-monitor:v1` SBoM may also be signed, providing yet another leaf node.
       "size": 16724
     },
     "annotations": {
-      "io.cncf.notary.v2.signature.subject": "wabbit-networks.io"
+      "io.cncf.notary.signature.subject": "wabbit-networks.io"
     }
   }
   ```
