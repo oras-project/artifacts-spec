@@ -107,7 +107,7 @@ Following the [oras.artifact.manifest][artifact-manifest-spec] spec, a signature
       "size": 16724
     },
     "annotations": {
-      "io.cncf.notary.v2.signature.subject": "wabbit-networks.io"
+      "io.cncf.notary.signature.subject": "wabbit-networks.io"
     }
   }
   ```
