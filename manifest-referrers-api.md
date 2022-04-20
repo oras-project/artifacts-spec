@@ -34,7 +34,7 @@ Content-Type: application/json
     "extensions": [
         {
             "name": "cncf.oras.referrers",
-            "url": "https://github.com/opencontainers/distribution-spec/blob/main/extensions/_oci.md",
+            "url": "https://github.com/oras-project/artifacts-spec/blob/main/manifest-referrers-api.md",
             "description": "ORAS referrers listing API",
             "endpoints": [
               "_oras/artifacts/referrers"
