@@ -63,12 +63,17 @@ For more info, see:
 - [Proposal: Decoupling Registries from Specific Artifact Specs #91](https://github.com/oras-project/artifacts-spec/discussions/91)
 - [Discussion of a new manifest #41](https://github.com/opencontainers/artifacts/discussions/41)
 
-## Project status
+## Project Status
 
-The ORAS artifacts-spec has released [draft 1][release], with the following reference implementations:
+The ORAS artifacts-spec has released [rc1][release]
+
+ORA Artifacts are supported by:
+
+- [Azure ACR][acr-oras] (registry)  implementation
 - [CNCF Distribution][cncf-distribution-artifacts] (registry) reference implementation
 - [ORAS CLI][oras-cli] for pushing, discovering, pulling OCI & ORAS Artifacts
 - [Notary - notation CLI][notation], enabling signing of all OCI Artifacts
+- [The ZOT Project][zot-project]
 
 ## ORAS and OCI
 
@@ -86,6 +91,7 @@ To engage with the project:
 
 This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 
+[acr-oras]:                         https://aka.ms/acr/oras-artifacts
 [cncf-calendar]:                    https://www.cncf.io/calendar/
 [oci-artifacts]:                    https://github.com/opencontainers/artifacts
 [oci-conformance]:                  https://github.com/opencontainers/oci-conformance/tree/main/distribution-spec
@@ -96,4 +102,5 @@ This project has adopted the [CNCF Code of Conduct](CODE_OF_CONDUCT.md).
 [artifact-referrers-spec]:          ./manifest-referrers-api.md
 [oras-cli]:                         https://github.com/oras-project/oras/releases/tag/v0.2.1-alpha.1
 [notation]:                         https://github.com/notaryproject/notation
-[release]:                          https://github.com/oras-project/artifacts-spec/releases/tag/v1.0.0-draft.1.1
+[release]:                          https://github.com/oras-project/artifacts-spec/releases/tag/v1.0.0-rc.1
+[zot-project]:                      https://github.com/project-zot/zot
