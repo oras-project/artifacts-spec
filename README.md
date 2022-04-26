@@ -67,10 +67,10 @@ For more info, see:
 
 The ORAS artifacts-spec has released [rc1][release]
 
-ORA Artifacts are supported by:
+ORAS Artifacts are supported by:
 
-- [Azure ACR][acr-oras] (registry)  implementation
-- [CNCF Distribution][cncf-distribution-artifacts] (registry) reference implementation
+- [Azure ACR][acr-oras] 
+- [CNCF Distribution][cncf-distribution-artifacts] Work in progress reference implementation, (fork from distribution)
 - [ORAS CLI][oras-cli] for pushing, discovering, pulling OCI & ORAS Artifacts
 - [Notary - notation CLI][notation], enabling signing of all OCI Artifacts
 - [The ZOT Project][zot-project]
