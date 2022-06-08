@@ -14,7 +14,8 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 
 - **`mediaType`** *string*
 
-  This field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [image-index][oci-image-index]. The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions.
+  This REQUIRED field contains the `mediaType` of this document, differentiating from [image-manifest][oci-image-manifest-spec] and [image-index][oci-image-index]. 
+  The `mediaType` for this manifest type MUST be `application/vnd.cncf.oras.artifact.manifest.v1+json`, where the version WILL change to reflect newer versions.
 
 - **`artifactType`** *string*
 
