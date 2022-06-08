@@ -1,4 +1,5 @@
 {
+  "mediaType": "application/vnd.oci.image.manifest.v1+json",
   "schemaVersion": 2,
   "config": {
     "mediaType": "application/vnd.oci.image.config.v1+json",
