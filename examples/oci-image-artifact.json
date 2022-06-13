@@ -17,5 +17,8 @@
       "digest": "sha256:7445693bd43e8246a8c166233392b33143f7f5e396c480f74538e5738fb6bd6e",
       "size": 226
     }
-  ]
+  ],
+  "annotations": {
+    "io.cncf.oras.artifact.created": "2022-06-13T22:11:10.08Z"
+  }
 }
