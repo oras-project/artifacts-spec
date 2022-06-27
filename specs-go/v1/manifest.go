@@ -28,7 +28,7 @@ type Manifest struct {
 
 	// Subject is an optional reference to any existing manifest within the repository.
 	// When specified, the artifact is said to be dependent upon the referenced subject.
-	Subject Descriptor `json:"subject"`
+	Subject *Descriptor `json:"subject,omitempty"`
 
 	// Annotations contains arbitrary metadata for the artifact manifest.
 	Annotations map[string]string `json:"annotations,omitempty"`
