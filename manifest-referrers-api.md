@@ -22,7 +22,7 @@ shown below.
 GET /v2/{repository}/_oci/ext/discover
 ```
 
-The response SHOULD contain an extension with the name of `cncf.oras.referrers`, the `url` link to the documentation defining the extension,
+The response SHOULD contain an extension with the name of `_oras`, the `url` link to the documentation defining the extension,
 and an `endpoints` list containing the path where the referrers can be requested.
 
 ```http
@@ -33,7 +33,7 @@ Content-Type: application/json
 {
     "extensions": [
         {
-            "name": "cncf.oras.referrers",
+            "name": "_oras",
             "url": "https://github.com/oras-project/artifacts-spec/blob/main/manifest-referrers-api.md",
             "description": "ORAS referrers listing API",
             "endpoints": [
