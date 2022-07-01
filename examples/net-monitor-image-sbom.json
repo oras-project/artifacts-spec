@@ -14,6 +14,7 @@
     "size": 16724
   },
   "annotations": {
+    "io.cncf.oras.artifact.created": "2022-06-13T22:11:10.08Z",
     "example.sbom.author": "wabbit-networks.io"
   }
 }
