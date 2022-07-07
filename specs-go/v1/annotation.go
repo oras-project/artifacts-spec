@@ -14,9 +14,7 @@
 
 package v1
 
-const (
-	// AnnotationArtifactCreated is the annotation key representing the UTC date
-	// and time on which the artifact was created, in RFC 3339 format.
-	// Reference: https://datatracker.ietf.org/doc/html/rfc3339#section-5.6
-	AnnotationArtifactCreated = "io.cncf.oras.artifact.created"
-)
+// AnnotationArtifactCreated is the annotation key representing the UTC date
+// and time on which the artifact was created, in RFC 3339 format.
+// Reference: https://datatracker.ietf.org/doc/html/rfc3339#section-5.6
+const AnnotationArtifactCreated = "io.cncf.oras.artifact.created"
