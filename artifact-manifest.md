@@ -27,7 +27,7 @@ The `artifact.manifest` provides an optional collection of `blobs`, an optional 
 - **`blobs`** *array of objects*
 
   An OPTIONAL collection of 0 or more blobs. The blobs array is analogous to [oci.image.manifest layers][oci-image-manifest-spec-layers], however unlike [image-manifest][oci-image-manifest-spec], the ordering of blobs is specific to the artifact type. Some artifacts may choose an overlay of files, while other artifact types may store independent collections of files.
-    - Each item in the array MUST be an [artifact descriptor][descriptor], and MUST NOT refer to another `manifest` providing dependency closure.
+    - Each item in the array MUST be an [artifact descriptor][descriptor] or `null`, and MUST NOT refer to another `manifest` providing dependency closure.
     - The max number of blobs is not defined, but MAY be limited by [distribution-spec][oci-distribution-spec] implementations.
     - An encountered `[descriptors].descriptor.mediaType` that is unknown to the implementation MUST be persisted as a blob.
 
