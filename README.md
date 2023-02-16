@@ -22,7 +22,7 @@ The ORAS Artifacts specification includes:
 
   - [Overview](#overview)
   - [Comparing the ORAS Artifact Manifest and OCI Image Manifest](#comparing-the-oras-artifact-manifest-and-oci-image-manifest)
-  - [How does ORAS Artifacts relate to OCI Artifacts?](#how-does-oras-artifacts-relate-to-oci-artifacts)
+  - [How does ORAS Artifacts relate to OCI Artifacts?](https://github.com/oras-project/oras-go/issues/271)
   - [Scenarios](./scenarios.md)
   - [Artifact Manifest Spec](./artifact-manifest.md)
   - [Referrers API](./manifest-referrers-api.md)
