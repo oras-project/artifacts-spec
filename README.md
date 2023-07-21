@@ -1,5 +1,7 @@
 ## Project Status
-There are no future releases or work items planned for this project.
+
+> ## ⚠️This repository has been archived and is no longer maintained. ⚠️
+
 
 The output of this project has been proposed to the [OCI Reference Types Working Group](https://github.com/opencontainers/wg-reference-types) and we plan to archive this repository once the OCI releases those changes in a new version.
 
