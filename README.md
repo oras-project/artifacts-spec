@@ -49,7 +49,7 @@ The approach to reference types is based on a new [artifact.manifest][artifact-m
 
 ## Comparing the ORAS Artifact Manifest and OCI Image Manifest
 
-OCI Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. ORAS Artifacts uses the `manifest.config.mediaType` to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.
+OCI Artifacts defines how to implement stand-alone artifacts that can fit within the constraints of the image-spec. OCI Artifacts [uses the `manifest.config.mediaType`](https://github.com/opencontainers/image-spec/blob/main/manifest.md#guidelines-for-artifact-usage) to identify the artifact is something other than a container image. While this validated the ability to generalize the **C**ontent **A**ddressable **S**torage (CAS) capabilities of [OCI Distribution][oci-distribution], a new set of artifacts require additional capabilities that aren't constrained to the image-spec. ORAS Artifacts provide a more generic means to store a wider range of artifact types, including references between artifacts.
 
 The addition of a new manifest does not change, nor impact the `image.manifest`.
 By defining the `artifact.manifest` and the `referrers/` api, registries and clients opt-into new capabilities, without breaking existing registry and client behavior. 
